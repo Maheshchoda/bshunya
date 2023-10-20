@@ -4,7 +4,7 @@ import leftImage from "@/public/images/Screenshot 2023-10-20 at 3.13.17 PM.png";
 
 const Hero = () => {
   return (
-    <div className="container mx-auto px-4 mt-12">
+    <div className="container mx-auto px-4 mt-12 mb-24">
       {/* Mobile Layout */}
       <div className="md:hidden space-y-4">
         {[leftImage, rightImage, rightImage, rightImage].map((image, index) => (
