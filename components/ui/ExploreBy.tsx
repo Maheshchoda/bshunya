@@ -22,7 +22,7 @@ const ImageData = [
 
 const ExploreBy = () => {
   return (
-    <div className="containe mb-10 max-w-screen-lg mx-auto px-4">
+    <div className="container mb-10 max-w-screen-lg mx-auto px-4">
       <h2 className="text-2xl font-bold mb-2 border-b-2 border-gray-300">
         Explore by
       </h2>
