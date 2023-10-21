@@ -1,20 +1,45 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [menuOpen]);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <nav className="fixed top-0 w-full z-50 p-4 bg-gray-400 text-gray-800">
-      <div className="container mx-auto max-w-screen-lg flex flex-start items-center">
-        <Link href="/" className="text-2xl font-bold">
+      <div className="container mx-auto max-w-screen-lg flex justify-between items-center">
+        <div className="md:hidden absolute left-4 top-4 z-50">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={
+              menuOpen
+                ? "text-white text-2xl"
+                : "text-gray-800 text-2xl hover:text-gray-600"
+            }
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+
+        <Link href="/" className="mx-auto md:mx-0 text-2xl font-bold">
           bshunya
         </Link>
 
-        <div className="hidden md:flex ml-32 space-x-32">
+        <div className="hidden md:flex space-x-4 md:ml-10">
           <Link href="/haircare" className="hover:text-gray-600">
             HairCare
           </Link>
@@ -28,48 +53,23 @@ const Navbar = () => {
             Health
           </Link>
         </div>
-
-        <div className="md:hidden absolute right-4 top-4 z-50">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className={
-              menuOpen
-                ? "text-white text-2xl"
-                : "text-gray-800 text-2xl hover:text-gray-600"
-            }
-          >
-            {menuOpen ? <FaTimes /> : <FaBars />}
-          </button>
-        </div>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-10">
-          <div className="flex flex-col space-y-4">
-            <a
-              href="#"
-              className="text-white text-3xl font-bold hover:text-gray-300"
-            >
+        <div className="md:hidden fixed inset-0 bg-black opacity-100 z-40 flex items-center justify-center transition-opacity duration-1000">
+          <div className="flex flex-col space-y-4 text-white text-3xl">
+            <Link href="/haircare" onClick={closeMenu}>
               HairCare
-            </a>
-            <a
-              href="#"
-              className="text-white text-3xl font-bold hover:text-gray-300"
-            >
+            </Link>
+            <Link href="/skincare" onClick={closeMenu}>
               SkinCare
-            </a>
-            <a
-              href="#"
-              className="text-white text-3xl font-bold hover:text-gray-300"
-            >
+            </Link>
+            <Link href="/diet" onClick={closeMenu}>
               Diet
-            </a>
-            <a
-              href="#"
-              className="text-white text-3xl font-bold hover:text-gray-300"
-            >
+            </Link>
+            <Link href="/health" onClick={closeMenu}>
               Health
-            </a>
+            </Link>
           </div>
         </div>
       )}
