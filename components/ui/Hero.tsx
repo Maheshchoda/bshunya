@@ -4,7 +4,7 @@ import leftImage from "@/public/images/Screenshot 2023-10-20 at 3.13.17 PM.png";
 
 const Hero = () => {
   return (
-    <div className="container mx-auto px-4 mt-12 mb-24">
+    <div className="container mx-auto mt-24 mb-24">
       {/* Mobile Layout */}
       <div className="md:hidden space-y-4">
         {[leftImage, rightImage, rightImage, rightImage].map((image, index) => (
@@ -35,7 +35,7 @@ const Hero = () => {
       <div className="hidden md:block max-w-screen-lg mx-auto">
         <div className="flex flex-col lg:flex-row justify-center items-start space-y-8 lg:space-y-0 lg:space-x-8">
           {/* Left Part */}
-          <div className="w-full lg:w-1/2 p-4">
+          <div className="w-full lg:w-1/2">
             <div className="h-[70%] w-full overflow-hidden mb-4">
               <Image
                 src={leftImage}

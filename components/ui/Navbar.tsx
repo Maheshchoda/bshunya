@@ -8,13 +8,13 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="p-4 bg-gray-400 text-gray-800 relative">
-      <div className="container mx-auto flex  justify-center items-center">
+    <nav className="fixed top-0 w-full z-50 p-4 bg-gray-400 text-gray-800">
+      <div className="container mx-auto max-w-screen-lg flex flex-start items-center">
         <Link href="/" className="text-2xl font-bold">
           bshunya
         </Link>
 
-        <div className="hidden md:flex ml-36 space-x-32">
+        <div className="hidden md:flex ml-32 space-x-32">
           <Link href="/haircare" className="hover:text-gray-600">
             HairCare
           </Link>
