@@ -25,6 +25,11 @@ const articleData: ArticleData = {
       quote: "Your quote here.",
       author: "Author name",
     } as QuoteBlockProps,
+    {
+      type: "TextBlock",
+      title: "This is the Title of this Article",
+      content: "Your text content here.",
+    } as TextBlockProps,
   ],
 };
 

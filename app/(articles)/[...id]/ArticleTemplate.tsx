@@ -5,7 +5,7 @@ interface ArticleTemplateProps {
 }
 
 const ArticleTemplate = ({ articleData }: ArticleTemplateProps) => (
-  <div className="max-w-2xl mx-auto">
+  <div className="mx-auto max-w-screen-lg">
     <h1 className="text-3xl font-bold mb-4">{articleData.title}</h1>
     {articleData.components.map((component, index) => {
       switch (component.type) {
