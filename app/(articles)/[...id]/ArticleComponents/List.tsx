@@ -1,21 +1,19 @@
-import StyledText from "./StyledText";
+import { List, ListItem } from "./ElementProps";
+import renderText from "./RenderText";
 
-type ListProps = {
-  items: string[];
-  ordered: boolean;
-};
+const ListItemComponent = ({ element }: { element: ListItem }) => (
+  <li>{element.children.map(renderText)}</li>
+);
 
-const List = ({ items, ordered }: ListProps) => {
-  const Tag = ordered ? "ol" : "ul";
+const ListComponent = ({ element }: { element: List }) => {
+  const Tag = element.listType === "number" ? "ol" : "ul";
   return (
     <Tag>
-      {items.map((item, index) => (
-        <li key={index}>
-          <StyledText text={item} />
-        </li>
+      {element.children.map((item, index) => (
+        <ListItemComponent key={index} element={item} />
       ))}
     </Tag>
   );
 };
 
-export default List;
+export default ListComponent;

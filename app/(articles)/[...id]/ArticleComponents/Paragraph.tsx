@@ -1,15 +1,8 @@
-import StyledText from "./StyledText";
+import { Paragraph } from "./ElementProps";
+import renderText from "./RenderText";
 
-type ParagraphProps = {
-  text: string;
-};
+const ParagraphComponent = ({ element }: { element: Paragraph }) => (
+  <p>{element.children.map(renderText)}</p>
+);
 
-const Paragraph = ({ text }: ParagraphProps) => {
-  return (
-    <p>
-      <StyledText text={text} />
-    </p>
-  );
-};
-
-export default Paragraph;
+export default ParagraphComponent;
