@@ -1,4 +1,4 @@
-import { List, ListItem } from "./ElementProps";
+import { List, ListItem } from "./ContentProps";
 import renderText from "./RenderText";
 
 const ListItemComponent = ({ element }: { element: ListItem }) => (

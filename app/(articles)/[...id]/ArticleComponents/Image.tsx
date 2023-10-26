@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Upload } from "./ElementProps";
+import { Upload } from "./ContentProps";
 import renderText from "./RenderText";
 
 const ImageComponent = ({ element }: { element: Upload }) => (

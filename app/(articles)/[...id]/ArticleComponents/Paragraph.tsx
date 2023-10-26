@@ -1,4 +1,4 @@
-import { Paragraph } from "./ElementProps";
+import { Paragraph } from "./ContentProps";
 import renderText from "./RenderText";
 
 const ParagraphComponent = ({ element }: { element: Paragraph }) => (

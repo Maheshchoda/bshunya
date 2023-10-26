@@ -1,4 +1,4 @@
-import { Text } from "./ElementProps";
+import { Text } from "./ContentProps";
 
 const renderText = (element: Text) => element.text;
 

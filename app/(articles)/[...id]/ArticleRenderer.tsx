@@ -1,12 +1,13 @@
 import React from "react";
 import {
-  ContentElement,
+  Content,
   Heading,
   Image,
   List,
   Paragraph,
   Quote,
 } from "./ArticleComponents";
+import { ContentElement } from "./ArticleComponents/ContentProps";
 
 const ContentRenderer = ({ element }: { element: ContentElement }) => {
   switch (element.type) {
@@ -25,16 +26,14 @@ const ContentRenderer = ({ element }: { element: ContentElement }) => {
   }
 };
 
-const ArticleContent = ({
-  content,
-}: {
-  content: { root: { children: ContentElement[] } };
-}) => (
-  <div>
-    {content.root.children.map((element, index) => (
-      <ContentRenderer key={index} element={element} />
-    ))}
-  </div>
-);
+const ArticleContent = ({ content }: Content) => {
+  return (
+    <div>
+      {content.map((element, index) => (
+        <ContentRenderer key={index} element={element} />
+      ))}
+    </div>
+  );
+};
 
 export default ArticleContent;

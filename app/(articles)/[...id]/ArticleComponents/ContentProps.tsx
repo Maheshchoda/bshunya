@@ -39,6 +39,10 @@ export interface Upload {
   };
 }
 
-type ContentElement = Heading | Paragraph | List | Quote | Upload;
+export type ContentElement = Heading | Paragraph | List | Quote | Upload;
 
-export default ContentElement;
+interface Content {
+  content: ContentElement[];
+}
+
+export default Content;

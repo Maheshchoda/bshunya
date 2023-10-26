@@ -1,4 +1,4 @@
-import { Heading } from "./ElementProps";
+import { Heading } from "./ContentProps";
 import renderText from "./RenderText";
 
 const Heading = ({ element }: { element: Heading }) => {
