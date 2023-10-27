@@ -10,7 +10,7 @@ const ImageComponent = ({ element }: { element: Upload }) => (
       width={300}
       height={300}
     />
-    <figcaption>{element.value.caption.map(renderText)}</figcaption>
+    <figcaption>{element.value.caption?.map(renderText)}</figcaption>
   </figure>
 );
 
