@@ -33,9 +33,12 @@ export interface Quote {
 export interface Upload {
   type: "upload";
   value: {
-    url: string;
-    alt: string;
-    caption: Text[];
+    alt?: string;
+    caption?: string;
+    cloud: {
+      url: string;
+      expiration: string;
+    };
   };
 }
 

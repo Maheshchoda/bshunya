@@ -1,6 +1,6 @@
 import Image from "next/image";
-import rightImage from "@/public/images/Screenshot 2023-10-20 at 3.13.22 PM.png";
 import leftImage from "@/public/images/Screenshot 2023-10-20 at 3.13.17 PM.png";
+import rightImage from "@/public/images/Screenshot 2023-10-20 at 3.13.22 PM.png";
 
 const Hero = () => {
   return (
@@ -48,7 +48,7 @@ const Hero = () => {
               50 Shades of Self-Care: How to Give Yourself TLC for Every
               Occasion
             </h2>
-            <p className="text-left h-[5%]">Self-care isn't selfish.</p>
+            <p className="text-left h-[5%]">Self-care isn&apos;t selfish.</p>
           </div>
           {/* Right Part */}
           <div className="w-full lg:w-1/2 grid md:grid-rows-2 lg:grid-rows-3 gap-4">
