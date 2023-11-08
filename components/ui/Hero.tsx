@@ -20,9 +20,9 @@ const Hero = async () => {
   const secondaryArticles = heroArticles.slice(1);
 
   return (
-    <div className="container mx-auto my-24">
+    <div className="container mx-auto my-32">
       {/* Mobile Layout */}
-      <div className="md:hidden space-y-4">
+      <div className="md:hidden space-y-4 px-4">
         {heroArticles.map((article, index) => (
           <Link
             key={index}
@@ -49,27 +49,25 @@ const Hero = async () => {
       </div>
       {/* Tablet and Laptop Layout */}
       <div className="hidden md:block mx-auto">
-        <div className="flex flex-col lg:flex-row justify-center items-start space-y-8 lg:space-x-8">
+        <div className="flex flex-col lg:flex-row justify-center items-start lg:space-x-16">
           {/* Left Part - Main Hero Article */}
           {mainArticle && (
             <Link
               href={`/articles/${mainArticle.slug}`}
-              className="w-full lg:w-1/2"
+              className="w-full lg:w-1/2 mb-12 "
             >
-              {/* Removed h-[70%] and mb-4 from div since they are unnecessary. */}
               <div className="overflow-hidden">
                 <Image
                   src={mainArticle.cloud.url}
                   alt={mainArticle.title}
-                  className="w-full h-full object-cover"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="w-full h-full object-cover min-h-[400px]"
                   layout="responsive"
+                  sizes="100vw"
                   width={100}
                   height={100}
                 />
               </div>
-              {/* Removed h-[25%] from h2 since the text should naturally define its height. */}
-              <h2 className="text-2xl font-bold mb-2 text-left">
+              <h2 className="text-4xl font-bold mt-4 mb-2 text-left">
                 {mainArticle.title}
               </h2>
               <p className="text-left">{mainArticle.meta.description}</p>
@@ -77,12 +75,12 @@ const Hero = async () => {
           )}
 
           {/* Right Part - Secondary Hero Articles */}
-          <div className="w-full lg:w-1/2 grid grid-cols-1 gap-4">
+          <div className="w-full lg:w-1/2 grid grid-cols-1">
             {secondaryArticles.map((article, index) => (
               <Link
                 key={index}
                 href={`/articles/${article.slug}`}
-                className="bg-white p-4 flex items-start"
+                className="bg-white mb-20 flex items-start"
               >
                 <div className="flex-none w-2/5 overflow-hidden mr-4">
                   <Image
