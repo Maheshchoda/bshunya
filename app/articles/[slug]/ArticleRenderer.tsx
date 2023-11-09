@@ -1,13 +1,14 @@
 import React from "react";
 import {
-  Content,
   Heading,
-  Image,
+  ImageComponent,
   List,
   Paragraph,
   Quote,
 } from "./ArticleComponents";
 import { ContentElement } from "./ArticleComponents/ContentProps";
+import ArticleProps from "./ArticleComponents/ArticleProps";
+import Image from "next/image";
 
 const ContentRenderer = ({ element }: { element: ContentElement }) => {
   switch (element.type) {
@@ -20,16 +21,21 @@ const ContentRenderer = ({ element }: { element: ContentElement }) => {
     case "quote":
       return <Quote element={element} />;
     case "upload":
-      return <Image element={element} />;
+      return <ImageComponent element={element} />;
     default:
       return null;
   }
 };
 
-const ArticleContent = ({ content }: Content) => {
+const ArticleContent = ({ Article }: ArticleProps) => {
+  const { title, image } = Article;
+  const { cloud, alt, width, height } = image;
+  const children = Article.content.root.children;
   return (
     <div>
-      {content.map((element, index) => (
+      <h1>{title}</h1>
+      <Image src={cloud.url} alt={alt} width={width} height={height} />
+      {children.map((element, index) => (
         <ContentRenderer key={index} element={element} />
       ))}
     </div>

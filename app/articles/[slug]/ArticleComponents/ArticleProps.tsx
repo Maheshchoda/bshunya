@@ -1,4 +1,4 @@
-import Content, { ContentElement } from "./ContentProps";
+import Content from "./ContentProps";
 
 export interface Image {
   id: string;
@@ -44,7 +44,7 @@ export interface Meta {
   image: Image;
 }
 
-export interface Article {
+export interface ArticleData {
   _id: string;
   articleRef: string;
   authorId: Author;
@@ -66,4 +66,8 @@ export interface Article {
   meta: Meta;
   createdAt: string;
   updatedAt: string;
+}
+
+export default interface ArticleProps {
+  Article: ArticleData;
 }

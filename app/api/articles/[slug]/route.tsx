@@ -2,8 +2,7 @@ import {
   connectToDatabase,
   closeDatabaseConnection,
 } from "../../../../database/mongodb";
-
-interface ArticleData {}
+import { ArticleData } from "@/app/articles/[slug]/ArticleComponents/ArticleProps";
 
 async function getArticleBySlug(slug: string): Promise<ArticleData | null> {
   let db;

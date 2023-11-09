@@ -45,7 +45,7 @@ interface Content {
     type: "root";
     children: ContentElement[];
   };
-  direction: "ltr";
+  direction?: "ltr";
 }
 
 export default Content;
