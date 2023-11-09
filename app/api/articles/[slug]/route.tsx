@@ -11,7 +11,7 @@ async function getArticleBySlug(slug: string): Promise<ArticleData | null> {
     db = await connectToDatabase();
     if (!db) throw new Error("Db is not initiated");
 
-    const articlesCollection = db.collection<ArticleData>("articles");
+    const articlesCollection = db.collection<ArticleData>("completeArticle");
     const article = await articlesCollection.findOne({ slug: slug });
     return article || null;
   } catch (error) {
