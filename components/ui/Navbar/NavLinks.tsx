@@ -13,7 +13,7 @@ const NavLinks = ({ closeMenu, className }: NavLinksProps) => {
       {links.map((link) => (
         <Link
           key={link}
-          href={`/tags?${link.toLowerCase()}`}
+          href={`/tags/${link.toLowerCase()}`}
           onClick={closeMenu}
           className="hover:text-gray-600 "
         >
