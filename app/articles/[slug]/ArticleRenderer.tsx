@@ -5,7 +5,7 @@ import {
   List,
   Paragraph,
   Quote,
-} from "./ArticleComponents";
+} from "@/components/ui/ArticleComponents";
 import Image from "next/image";
 import { ArticleProps, ContentElementProps } from "@/types";
 
