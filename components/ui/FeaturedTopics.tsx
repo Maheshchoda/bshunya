@@ -3,10 +3,14 @@ import React from "react";
 
 const FeaturedTopics = () => {
   const articles = [
-    { id: 1, title: "Article 1", href: "/article1" },
-    { id: 2, title: "Article 2", href: "/article2" },
-    { id: 3, title: "Article 3", href: "/article3" },
-    { id: 4, title: "Article 4", href: "/article4" },
+    {
+      id: 1,
+      title: "Article 1",
+      slug: "/articles/29-ways-to-lose-weight-naturally-(backed-by-science)",
+    },
+    { id: 2, title: "Article 2", slug: "/articles/trending-2-" },
+    { id: 3, title: "Article 3", slug: "/articles/trending-2-" },
+    { id: 4, title: "Article 4", slug: "/articles/tredning-now-checking-4" },
   ];
 
   return (
@@ -17,7 +21,7 @@ const FeaturedTopics = () => {
         {articles.map((article) => (
           <Link
             key={article.id}
-            href={article.href}
+            href={article.slug}
             className="block p-4 border-b border-gray-300 last:border-0 text-lg font-semibold hover:text-blue-600 transition"
             passHref
           >
