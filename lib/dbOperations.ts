@@ -1,19 +1,41 @@
-import { connectToDatabase, closeDatabaseConnection } from "@/database/mongodb";
+import { Sort } from "mongodb";
+import { connectToDatabase } from "@/database/mongodb";
 import { ArticleData } from "@/types/ArticleProps";
 import config from "@/config/index";
+
+async function getCollection() {
+  const db = await connectToDatabase();
+  if (!db) {
+    throw new Error("Failed to connect to the database");
+  }
+  return db.collection<ArticleData>(config.collection);
+}
 
 export async function getArticleBySlug(
   slug: string
 ): Promise<ArticleData | null> {
   try {
-    const db = await connectToDatabase();
-    if (!db) {
-      throw new Error("Failed to connect to the database");
+    const articlesCollection = await getCollection();
+    return (await articlesCollection.findOne({ slug })) || null;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getArticlesByQuery(
+  query: { [key: string]: boolean },
+  sort?: Sort
+): Promise<ArticleData[] | null> {
+  try {
+    const articlesCollection = await getCollection();
+    const cursor = articlesCollection.find(query);
+    if (sort) {
+      cursor.sort(sort);
     }
-    console.log("from the config", config);
-    const articlesCollection = db.collection<ArticleData>(config.collection);
-    return (await articlesCollection.findOne({ slug: slug })) || null;
-  } finally {
-    await closeDatabaseConnection();
+    return cursor.toArray() || null;
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 }

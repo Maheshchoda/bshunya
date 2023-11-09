@@ -1,40 +1,54 @@
+// database/mongodb.ts
 import { MongoClient, Db } from "mongodb";
+import config from "@/config/index";
 
-const MONGODB_URI = process.env.MONGODB_URI;
-if (!MONGODB_URI) {
-  throw new Error("MongoDB URL is not found.");
-}
-
-const client = new MongoClient(MONGODB_URI);
-let isConnected = false;
+let client: MongoClient | null = null;
+let dbInstance: Db | null = null;
 
 async function connectToDatabase(): Promise<Db> {
-  if (isConnected) {
-    return client.db(); // Use the existing connection if it's already established
+  if (dbInstance) {
+    return dbInstance; // If dbInstance is already created, return it
   }
 
   try {
+    // If client is not initialized or not connected, connect it
+    if (!client) {
+      client = new MongoClient(config.mongoURI);
+    }
     await client.connect();
-    isConnected = true; // Set the flag to true once connected
-    return client.db();
+    dbInstance = client.db(); // Assign the db instance after connection
+    return dbInstance;
   } catch (error) {
-    console.error("Connection to MongoDB failed:", error);
+    // Handle connection error
+    console.error("Failed to connect to MongoDB", error);
     throw error;
   }
 }
 
 async function closeDatabaseConnection(): Promise<void> {
-  if (!isConnected) {
-    return; // No need to close if it's not connected
-  }
-
-  try {
-    await client.close();
-    isConnected = false; // Reset the flag once the connection is closed
-  } catch (error) {
-    console.error("Failed to close the database connection:", error);
-    throw error;
+  if (client) {
+    try {
+      await client.close();
+    } catch (error) {
+      console.error("Failed to close the database connection:", error);
+      throw error;
+    } finally {
+      client = null; // Reset the client to null after disconnection
+      dbInstance = null; // Also reset the dbInstance to null
+    }
   }
 }
+
+process.on("SIGINT", async () => {
+  await closeDatabaseConnection();
+  console.log("Application terminated. Database connection closed.");
+  process.exit(0);
+});
+
+process.on("SIGTERM", async () => {
+  await closeDatabaseConnection();
+  console.log("Application terminated. Database connection closed.");
+  process.exit(0);
+});
 
 export { connectToDatabase, closeDatabaseConnection };

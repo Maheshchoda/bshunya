@@ -1,133 +1,43 @@
-import { ArticleData } from "@/app/articles/[slug]/ArticleComponents/ArticleProps";
-import {
-  connectToDatabase,
-  closeDatabaseConnection,
-} from "../../../database/mongodb";
-import { Collection } from "mongodb";
 import { type NextRequest } from "next/server";
-
-async function getHeroArticle(
-  articlesCollection: Collection<ArticleData>
-): Promise<ArticleData | null> {
-  try {
-    const heroArticles = await articlesCollection
-      .find({ isHeroArticle: true })
-      .sort({ heroPosition: 1 })
-      .toArray();
-    return heroArticles || null;
-  } catch (error) {
-    console.error("Error fetching Hero Articles:", error);
-    throw error;
-  }
-}
-
-async function getTrendingArticles(
-  articlesCollection: Collection<ArticleData>
-): Promise<ArticleData | null> {
-  try {
-    const TrendingArticles = await articlesCollection
-      .find({ isTrending: true })
-      .toArray();
-    return TrendingArticles || null;
-  } catch (error) {
-    console.error("Error fetching Hero Articles:", error);
-    throw error;
-  }
-}
-
-async function getRecommendedArticles(
-  articlesCollection: Collection<ArticleData>
-): Promise<ArticleData | null> {
-  try {
-    const RecommendedArticles = await articlesCollection
-      .find({ isRecommended: true })
-      .toArray();
-    return RecommendedArticles || null;
-  } catch (error) {
-    console.error("Error fetching Recommended Articles:", error);
-    throw error;
-  }
-}
+import { createApiResponse } from "@/lib/apiResponses";
+import { getArticlesByQuery } from "@/lib/dbOperations";
+import { Sort } from "mongodb";
 
 export async function GET(request: NextRequest) {
-  let db;
   try {
-    db = await connectToDatabase();
-    if (!db) throw new Error("Db is not initiated");
-    const collection = process.env.DATABASE_COLLECTION;
-    if (!collection) throw Error("Collection is Required");
-
-    const articlesCollection = db.collection<ArticleData>(collection);
     const searchParams = request.nextUrl.searchParams;
-    const query = searchParams.get("query");
-    if (query === "isHeroArticle") {
-      const heroArticles = await getHeroArticle(articlesCollection);
-      if (!heroArticles) {
-        return new Response(
-          JSON.stringify({ message: "Hero Articles not found" }),
-          {
-            status: 404,
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
+    const queryKey = searchParams.get("query");
+
+    // Define the query and sorting options
+    let query: { [key: string]: boolean } = {};
+    let sort: Sort | undefined;
+
+    switch (queryKey) {
+      case "isHeroArticle":
+        query = { isHeroArticle: true };
+        sort = { heroPosition: 1 };
+        break;
+      case "isTrending":
+        query = { isTrending: true };
+        break;
+      case "isRecommended":
+        query = { isRecommended: true };
+        break;
+      default:
+        return createApiResponse(
+          { message: "Query parameter is invalid" },
+          400
         );
-      }
-      return new Response(JSON.stringify(heroArticles), {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    } else if (query === "isTrending") {
-      const TrendingArticles = await getTrendingArticles(articlesCollection);
-      if (!TrendingArticles) {
-        return new Response(
-          JSON.stringify({ message: "Trending Articles not found" }),
-          {
-            status: 404,
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-      }
-      return new Response(JSON.stringify(TrendingArticles), {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    } else if (query === "isRecommended") {
-      const RecommendedArticles = await getRecommendedArticles(
-        articlesCollection
-      );
-      if (!RecommendedArticles) {
-        return new Response(
-          JSON.stringify({ message: "Recommended Articles not found" }),
-          {
-            status: 404,
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-      }
-      return new Response(JSON.stringify(RecommendedArticles), {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
     }
+
+    const articles = await getArticlesByQuery(query, sort);
+
+    if (articles?.length === 0) {
+      return createApiResponse({ message: "No articles found" }, 404);
+    }
+    return createApiResponse(articles);
   } catch (error) {
-    return new Response(JSON.stringify({ message: "Internal Server Error" }), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  } finally {
-    await closeDatabaseConnection();
+    console.error("GET request error:", error);
+    return createApiResponse({ message: "Internal Server Error" }, 500);
   }
 }
