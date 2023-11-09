@@ -21,6 +21,20 @@ async function getHeroArticle(
   }
 }
 
+async function getTrendingArticles(
+  articlesCollection: Collection<ArticleData>
+): Promise<ArticleData | null> {
+  try {
+    const TrendingArticles = await articlesCollection
+      .find({ isTrending: true })
+      .toArray();
+    return TrendingArticles || null;
+  } catch (error) {
+    console.error("Error fetching Hero Articles:", error);
+    throw error;
+  }
+}
+
 export async function GET(request: NextRequest) {
   let db;
   try {
@@ -46,6 +60,25 @@ export async function GET(request: NextRequest) {
         );
       }
       return new Response(JSON.stringify(heroArticles), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } else if (query === "isTrending") {
+      const TrendingArticles = await getTrendingArticles(articlesCollection);
+      if (!TrendingArticles) {
+        return new Response(
+          JSON.stringify({ message: "Trending Articles not found" }),
+          {
+            status: 404,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
+      return new Response(JSON.stringify(TrendingArticles), {
         status: 200,
         headers: {
           "Content-Type": "application/json",
