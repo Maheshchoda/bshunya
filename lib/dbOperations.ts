@@ -57,3 +57,21 @@ export async function getArticlesByTag(
     throw error;
   }
 }
+
+export async function getArticlesByCategory(
+  category: string
+): Promise<ArticleDataProps[] | null> {
+  try {
+    const articlesCollection = await getCollection();
+    const articles = await articlesCollection
+      .find({
+        "categories.name": category,
+      })
+      .toArray();
+    if (articles.length === 0) return null;
+    return articles;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
