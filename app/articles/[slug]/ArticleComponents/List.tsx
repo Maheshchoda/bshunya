@@ -1,11 +1,11 @@
-import { List, ListItem } from "./ContentProps";
+import { ListProps, ListItemProps } from "@/types";
 import renderText from "./RenderText";
 
-const ListItemComponent = ({ element }: { element: ListItem }) => (
+const ListItemComponent = ({ element }: { element: ListItemProps }) => (
   <li>{element.children.map(renderText)}</li>
 );
 
-const ListComponent = ({ element }: { element: List }) => {
+const ListComponent = ({ element }: { element: ListProps }) => {
   const Tag = element.listType === "number" ? "ol" : "ul";
   return (
     <Tag>

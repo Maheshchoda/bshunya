@@ -1,8 +1,6 @@
-import { ArticleData } from "@/app/articles/[slug]/ArticleComponents/ArticleProps";
+import { ArticleDataProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-
-// import type { HeroArticle } from '@/path/to/types';
 
 async function getHeroArticles() {
   const response = await fetch(
@@ -16,7 +14,7 @@ async function getHeroArticles() {
 }
 
 const Hero = async () => {
-  const heroArticles: ArticleData[] = await getHeroArticles();
+  const heroArticles: ArticleDataProps[] = await getHeroArticles();
   const mainArticle = heroArticles[0];
   const secondaryArticles = heroArticles.slice(1);
 

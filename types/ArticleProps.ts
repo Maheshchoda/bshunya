@@ -1,6 +1,6 @@
-import Content from "./ContentProps";
+import { ContentProps } from "./ContentProps";
 
-export interface Image {
+export interface ImageProps {
   id: string;
   alt: string;
   cloud: {
@@ -18,43 +18,43 @@ export interface Image {
   caption?: string;
 }
 
-export interface Author {
+export interface AuthorProps {
   id: string;
   name: string;
-  bio: Content;
+  bio: ContentProps;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface Category {
+export interface CategoryProps {
   id: string;
   name: string;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface Tag {
+export interface TagProps {
   tag: string;
   id: string;
 }
 
-export interface Meta {
+export interface MetaProps {
   title: string;
   description: string;
-  image: Image;
+  image: ImageProps;
 }
 
-export interface ArticleData {
+export interface ArticleDataProps {
   _id: string;
   articleRef: string;
-  authorId: Author;
-  categories: Category[];
-  content: Content;
+  authorId: AuthorProps;
+  categories: CategoryProps[];
+  content: ContentProps;
   id: string;
-  image: Image;
+  image: ImageProps;
   title: string;
   slug: string;
-  tags: Tag[];
+  tags: TagProps[];
   cloud: {
     url: string;
     expiration: string;
@@ -63,11 +63,11 @@ export interface ArticleData {
   isRecommended: boolean;
   isTrending: boolean;
   viewsCount: number;
-  meta: Meta;
+  meta: MetaProps;
   createdAt: string;
   updatedAt: string;
 }
 
-export default interface ArticleProps {
-  Article: ArticleData;
+export interface ArticleProps {
+  Article: ArticleDataProps;
 }

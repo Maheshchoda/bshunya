@@ -1,5 +1,5 @@
-import { Text } from "./ContentProps";
+import { TextProps } from "@/types";
 
-const renderText = (element: Text) => element.text;
+const renderText = (element: TextProps) => element.text;
 
 export default renderText;

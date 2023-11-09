@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { ArticleData } from "@/app/articles/[slug]/ArticleComponents/ArticleProps";
+import { ArticleDataProps } from "@/types";
 import Link from "next/link";
 
 async function getTrendingArticles() {
@@ -15,7 +15,7 @@ async function getTrendingArticles() {
 }
 
 const TrendingStories = async () => {
-  const TrendingArticles: ArticleData[] = await getTrendingArticles();
+  const TrendingArticles: ArticleDataProps[] = await getTrendingArticles();
   return (
     <div className="p-4">
       <div className="mb-6">

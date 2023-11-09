@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { ArticleData } from "@/app/articles/[slug]/ArticleComponents/ArticleProps";
+import { ArticleDataProps } from "@/types";
 import Link from "next/link";
 
 async function getRecommendedArticles() {
@@ -15,7 +15,8 @@ async function getRecommendedArticles() {
 }
 
 const OurTopPicks = async () => {
-  const RecommendedArticles: ArticleData[] = await getRecommendedArticles();
+  const RecommendedArticles: ArticleDataProps[] =
+    await getRecommendedArticles();
   return (
     <div className="mt-14">
       <h1 className="text-3xl font-bold mb-4">Our Top Picks</h1>

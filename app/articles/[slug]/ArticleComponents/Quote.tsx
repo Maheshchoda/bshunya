@@ -1,8 +1,9 @@
-import { Quote } from "./ContentProps";
+import { QuoteProps } from "@/types";
 import renderText from "./RenderText";
 
-const QuoteComponent = ({ element }: { element: Quote }) => (
-  <blockquote>{element.children.map(renderText)}</blockquote>
+const QuoteComponent = ({ element }: { element: QuoteProps }) => (
+  // <blockquote>{element.children.map(renderText)}</blockquote>
+  <blockquote></blockquote>
 );
 
 export default QuoteComponent;

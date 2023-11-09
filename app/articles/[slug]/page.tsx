@@ -1,7 +1,7 @@
-import { ArticleData } from "@/types/ArticleProps";
+import { ArticleDataProps } from "@/types/ArticleProps";
 import ArticleContent from "./ArticleRenderer";
 
-async function getArticle(slug: String): Promise<ArticleData | null> {
+async function getArticle(slug: String): Promise<ArticleDataProps | null> {
   const response = await fetch(`http://localhost:3000/api/articles/${slug}`, {
     cache: "no-store",
   });

@@ -1,6 +1,6 @@
 import { Sort } from "mongodb";
 import { connectToDatabase } from "@/database/mongodb";
-import { ArticleData } from "@/types/ArticleProps";
+import { ArticleDataProps } from "@/types/ArticleProps";
 import config from "@/config/index";
 
 async function getCollection() {
@@ -8,12 +8,12 @@ async function getCollection() {
   if (!db) {
     throw new Error("Failed to connect to the database");
   }
-  return db.collection<ArticleData>(config.collection);
+  return db.collection<ArticleDataProps>(config.collection);
 }
 
 export async function getArticleBySlug(
   slug: string
-): Promise<ArticleData | null> {
+): Promise<ArticleDataProps | null> {
   try {
     const articlesCollection = await getCollection();
     return (await articlesCollection.findOne({ slug })) || null;
@@ -26,7 +26,7 @@ export async function getArticleBySlug(
 export async function getArticlesByQuery(
   query: { [key: string]: boolean },
   sort?: Sort
-): Promise<ArticleData[] | null> {
+): Promise<ArticleDataProps[] | null> {
   try {
     const articlesCollection = await getCollection();
     const cursor = articlesCollection.find(query);

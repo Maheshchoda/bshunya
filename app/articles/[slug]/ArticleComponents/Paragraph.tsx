@@ -1,7 +1,7 @@
-import { Paragraph } from "./ContentProps";
+import { ParagraphProps } from "@/types";
 import renderText from "./RenderText";
 
-const ParagraphComponent = ({ element }: { element: Paragraph }) => (
+const ParagraphComponent = ({ element }: { element: ParagraphProps }) => (
   <p>{element.children.map(renderText)}</p>
 );
 

@@ -1,51 +1,54 @@
-import { Image } from "./ArticleProps";
+import { ImageProps } from "./ArticleProps";
 
-export interface Text {
+export interface TextProps {
   type: "text";
   text: string;
 }
 
-export interface Heading {
+export interface HeadingProps {
   type: "heading";
   tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  children: Text[];
+  children: TextProps[];
 }
 
-export interface Paragraph {
+export interface ParagraphProps {
   type: "paragraph";
-  children: Text[];
+  children: TextProps[];
 }
 
-export interface ListItem {
+export interface ListItemProps {
   type: "listitem";
-  children: Text[];
+  children: TextProps[];
 }
 
-export interface List {
+export interface ListProps {
   type: "list";
   listType: "number" | "bullet";
-  children: ListItem[];
+  children: ListItemProps[];
 }
 
-export interface Quote {
+export interface QuoteProps {
   type: "quote";
   children: Text[];
 }
 
-export interface Upload {
+export interface UploadProps {
   type: "upload";
   relationTo: "media";
-  value: Image;
+  value: ImageProps;
 }
 
-export type ContentElement = Heading | Paragraph | List | Quote | Upload;
+export type ContentElementProps =
+  | HeadingProps
+  | ParagraphProps
+  | ListProps
+  | QuoteProps
+  | UploadProps;
 
-interface Content {
+export interface ContentProps {
   root: {
     type: "root";
-    children: ContentElement[];
+    children: ContentElementProps[];
   };
   direction?: "ltr";
 }
-
-export default Content;

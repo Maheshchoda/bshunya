@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Upload } from "./ContentProps";
+import { UploadProps } from "@/types";
 import renderText from "./RenderText";
 
-const ImageComponent = ({ element }: { element: Upload }) => {
+const ImageComponent = ({ element }: { element: UploadProps }) => {
   return (
     <figure>
       <Image
