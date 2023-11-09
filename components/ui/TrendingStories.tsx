@@ -25,11 +25,8 @@ const TrendingStories = async () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {TrendingArticles.map((article, index) => (
-          <Link href={`/articles/${article.slug}`}>
-            <div
-              key={index}
-              className="bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-row items-center space-x-4 p-6"
-            >
+          <Link href={`/articles/${article.slug}`} key={index}>
+            <div className="bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-row items-center space-x-4 p-6">
               <div className="relative w-full md:w-1/2 lg:w-1/3 h-32">
                 <Image
                   src={article.image.cloud.url}
