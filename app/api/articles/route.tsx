@@ -35,6 +35,20 @@ async function getTrendingArticles(
   }
 }
 
+async function getRecommendedArticles(
+  articlesCollection: Collection<ArticleData>
+): Promise<ArticleData | null> {
+  try {
+    const RecommendedArticles = await articlesCollection
+      .find({ isRecommended: true })
+      .toArray();
+    return RecommendedArticles || null;
+  } catch (error) {
+    console.error("Error fetching Recommended Articles:", error);
+    throw error;
+  }
+}
+
 export async function GET(request: NextRequest) {
   let db;
   try {
@@ -79,6 +93,27 @@ export async function GET(request: NextRequest) {
         );
       }
       return new Response(JSON.stringify(TrendingArticles), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } else if (query === "isRecommended") {
+      const RecommendedArticles = await getRecommendedArticles(
+        articlesCollection
+      );
+      if (!RecommendedArticles) {
+        return new Response(
+          JSON.stringify({ message: "Recommended Articles not found" }),
+          {
+            status: 404,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
+      return new Response(JSON.stringify(RecommendedArticles), {
         status: 200,
         headers: {
           "Content-Type": "application/json",

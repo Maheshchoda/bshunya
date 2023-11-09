@@ -10,7 +10,7 @@ async function getTrendingArticles() {
       cache: "no-store",
     }
   );
-  if (!response.ok) throw new Error("Failed to fetch hero articles");
+  if (!response.ok) throw new Error("Failed to fetch Trending articles");
   return response.json();
 }
 

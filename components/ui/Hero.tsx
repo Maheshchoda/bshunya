@@ -35,7 +35,6 @@ const Hero = async () => {
                 src={article.image.cloud.url}
                 alt={article.image.alt}
                 className="w-full h-full object-cover"
-                layout="responsive"
                 sizes="100vw"
                 width={article.image.width}
                 height={article.image.height}
@@ -62,7 +61,6 @@ const Hero = async () => {
                   src={mainArticle.image.cloud.url}
                   alt={mainArticle.image.alt}
                   className="w-full h-full object-cover min-h-[400px]"
-                  layout="responsive"
                   sizes="100vw"
                   width={mainArticle.image.width}
                   height={mainArticle.image.height}
@@ -89,7 +87,6 @@ const Hero = async () => {
                     alt={article.image.alt}
                     className="w-full h-full object-cover"
                     sizes="(min-width: 1024px) 20vw, 50vw"
-                    layout="responsive"
                     width={article.image.width}
                     height={article.image.height}
                   />
