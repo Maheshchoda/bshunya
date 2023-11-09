@@ -1,3 +1,4 @@
+import { ArticleData } from "@/app/articles/[slug]/ArticleComponents/ArticleProps";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,7 +16,7 @@ async function getHeroArticles() {
 }
 
 const Hero = async () => {
-  const heroArticles = await getHeroArticles();
+  const heroArticles: ArticleData[] = await getHeroArticles();
   const mainArticle = heroArticles[0];
   const secondaryArticles = heroArticles.slice(1);
 
@@ -31,13 +32,13 @@ const Hero = async () => {
           >
             <div className="overflow-hidden">
               <Image
-                src={article.cloud.url}
-                alt={article.title}
+                src={article.image.cloud.url}
+                alt={article.image.alt}
                 className="w-full h-full object-cover"
                 layout="responsive"
                 sizes="100vw"
-                width={100}
-                height={100}
+                width={article.image.width}
+                height={article.image.height}
               />
             </div>
             <h2 className="text-2xl font-bold mb-2 text-left">
@@ -58,13 +59,13 @@ const Hero = async () => {
             >
               <div className="overflow-hidden">
                 <Image
-                  src={mainArticle.cloud.url}
-                  alt={mainArticle.title}
+                  src={mainArticle.image.cloud.url}
+                  alt={mainArticle.image.alt}
                   className="w-full h-full object-cover min-h-[400px]"
                   layout="responsive"
                   sizes="100vw"
-                  width={100}
-                  height={100}
+                  width={mainArticle.image.width}
+                  height={mainArticle.image.height}
                 />
               </div>
               <h2 className="text-4xl font-bold mt-4 mb-2 text-left">
@@ -84,13 +85,13 @@ const Hero = async () => {
               >
                 <div className="flex-none w-2/5 overflow-hidden mr-4">
                   <Image
-                    src={article.cloud.url}
-                    alt={`Article ${index}`}
+                    src={article.image.cloud.url}
+                    alt={article.image.alt}
                     className="w-full h-full object-cover"
                     sizes="(min-width: 1024px) 20vw, 50vw"
                     layout="responsive"
-                    width={100}
-                    height={100}
+                    width={article.image.width}
+                    height={article.image.height}
                   />
                 </div>
                 <div className="flex-grow">

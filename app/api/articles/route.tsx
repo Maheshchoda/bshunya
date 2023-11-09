@@ -1,11 +1,10 @@
+import { ArticleData } from "@/app/articles/[slug]/ArticleComponents/ArticleProps";
 import {
   connectToDatabase,
   closeDatabaseConnection,
 } from "../../../database/mongodb";
 import { Collection } from "mongodb";
 import { type NextRequest } from "next/server";
-
-interface ArticleData {}
 
 async function getHeroArticle(
   articlesCollection: Collection<ArticleData>
@@ -27,7 +26,10 @@ export async function GET(request: NextRequest) {
   try {
     db = await connectToDatabase();
     if (!db) throw new Error("Db is not initiated");
-    const articlesCollection = db.collection<ArticleData>("articles");
+    const collection = process.env.DATABASE_COLLECTION;
+    if (!collection) throw Error("Collection is Required");
+
+    const articlesCollection = db.collection<ArticleData>(collection);
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get("query");
     if (query === "isHeroArticle") {

@@ -9,8 +9,10 @@ async function getArticleBySlug(slug: string): Promise<ArticleData | null> {
   try {
     db = await connectToDatabase();
     if (!db) throw new Error("Db is not initiated");
+    const collection = process.env.DATABASE_COLLECTION;
+    if (!collection) throw Error("Collection is Required");
 
-    const articlesCollection = db.collection<ArticleData>("completeArticle");
+    const articlesCollection = db.collection<ArticleData>(collection);
     const article = await articlesCollection.findOne({ slug: slug });
     return article || null;
   } catch (error) {
