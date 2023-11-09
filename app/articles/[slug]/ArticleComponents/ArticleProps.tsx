@@ -1,8 +1,12 @@
-import ContentElement from "./ContentProps";
+import Content, { ContentElement } from "./ContentProps";
 
 export interface Image {
   id: string;
   alt: string;
+  cloud: {
+    url: string;
+    expiration: string;
+  };
   filename: string;
   mimeType: string;
   filesize: number;
@@ -11,13 +15,15 @@ export interface Image {
   createdAt: string;
   updatedAt: string;
   url: string;
-  caption: ContentElement[];
+  caption?: string;
 }
 
 export interface Author {
   id: string;
   name: string;
-  bio: ContentElement;
+  bio: Content;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Category {
@@ -39,16 +45,25 @@ export interface Meta {
 }
 
 export interface Article {
+  _id: string;
+  articleRef: string;
+  authorId: Author;
+  categories: Category[];
+  content: Content;
   id: string;
+  image: Image;
   title: string;
   slug: string;
-  authorId: Author;
-  createdAt: string;
-  updatedAt: string;
-  categories: Category[];
   tags: Tag[];
-  image: Image;
+  cloud: {
+    url: string;
+    expiration: string;
+  };
   isHeroArticle: boolean;
+  isRecommended: boolean;
+  isTrending: boolean;
   viewsCount: number;
   meta: Meta;
+  createdAt: string;
+  updatedAt: string;
 }

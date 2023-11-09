@@ -1,3 +1,5 @@
+import { Image } from "./ArticleProps";
+
 export interface Text {
   type: "text";
   text: string;
@@ -32,20 +34,18 @@ export interface Quote {
 
 export interface Upload {
   type: "upload";
-  value: {
-    alt?: string;
-    caption?: string;
-    cloud: {
-      url: string;
-      expiration: string;
-    };
-  };
+  relationTo: "media";
+  value: Image;
 }
 
 export type ContentElement = Heading | Paragraph | List | Quote | Upload;
 
 interface Content {
-  content: ContentElement[];
+  root: {
+    type: "root";
+    children: ContentElement[];
+  };
+  direction: "ltr";
 }
 
 export default Content;
