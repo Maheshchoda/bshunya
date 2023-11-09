@@ -1,14 +1,7 @@
-import React from "react";
+import { ArticleData } from "@/types/ArticleProps";
 import ArticleContent from "./ArticleRenderer";
-import ArticleProps from "./ArticleComponents/ArticleProps";
 
-interface Props {
-  params: {
-    slug: string;
-  };
-}
-
-async function getArticle(slug: String): Promise<ArticleProps | null> {
+async function getArticle(slug: String): Promise<ArticleData | null> {
   const response = await fetch(`http://localhost:3000/api/articles/${slug}`, {
     cache: "no-store",
   });
@@ -16,13 +9,19 @@ async function getArticle(slug: String): Promise<ArticleProps | null> {
   return response.json();
 }
 
-const ArticlePage = async ({ params: { slug } }: Props) => {
-  const Article = await getArticle(slug);
+export default async function ArticlePage({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
+  const article = await getArticle(slug);
+  if (!article) {
+    return <div>Article not found</div>;
+  }
+
   return (
     <div className="mx-auto max-w-screen-lg mt-24">
-      <ArticleContent Article={Article} />
+      <ArticleContent Article={article} />
     </div>
   );
-};
-
-export default ArticlePage;
+}
