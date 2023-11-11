@@ -29,7 +29,7 @@ export interface ListProps {
 
 export interface QuoteProps {
   type: "quote";
-  children: Text[];
+  children: TextProps[];
 }
 
 export interface UploadProps {

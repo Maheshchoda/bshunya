@@ -30,14 +30,27 @@ const ArticleContent = ({ Article }: ArticleProps) => {
   const { title, image } = Article;
   const { cloud, alt, width, height } = image;
   const children = Article.content.root.children;
+
   return (
-    <div>
-      <h1>{title}</h1>
-      <Image src={cloud.url} alt={alt} width={width} height={height} />
-      {children.map((element: ContentElementProps, index: number) => (
-        <ContentRenderer key={index} element={element} />
-      ))}
-    </div>
+    <main className="mx-auto max-w-screen-lg px-4 lg:px-0">
+      <h1 className="text-2xl font-bold leading-tight text-gray-900 mt-6 md:mt-8 lg:text-4xl lg:leading-none">
+        {title}
+      </h1>
+      <div className="my-4 md:my-6">
+        <Image
+          src={cloud.url}
+          alt={alt}
+          width={width}
+          height={height}
+          className="rounded-lg w-full object-cover"
+        />
+      </div>
+      <article className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto">
+        {children.map((element: ContentElementProps, index: number) => (
+          <ContentRenderer key={index} element={element} />
+        ))}
+      </article>
+    </main>
   );
 };
 
