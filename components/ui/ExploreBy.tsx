@@ -1,25 +1,25 @@
 import Image from "next/image";
-import nutriImage from "@/public/images/Screenshot 2023-10-20 at 7.56.58 PM.png";
+import fruitsAndVeggies from "@/public/images/fruitsAndVeggies.webp";
 import Link from "next/link";
 
 const ImageData = [
   {
-    imageUrl: nutriImage,
-    imageHeading: "Health",
+    imageUrl: fruitsAndVeggies,
+    imageHeading: "Fruits",
     category: "health",
   },
   {
-    imageUrl: nutriImage,
+    imageUrl: fruitsAndVeggies,
     imageHeading: "Yoga",
     category: "yoga",
   },
   {
-    imageUrl: nutriImage,
+    imageUrl: fruitsAndVeggies,
     imageHeading: "Fitness",
     category: "fitness",
   },
   {
-    imageUrl: nutriImage,
+    imageUrl: fruitsAndVeggies,
     imageHeading: "Sleep",
     category: "sleep",
   },

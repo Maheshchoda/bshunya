@@ -6,7 +6,7 @@ import OurTopPicks from "@/components/ui/OurTopPicks";
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-screen-lg">
+    <main className="mx-auto max-w-screen-lg px-4 lg:px-0">
       <Hero />
       <ExploreBy />
       <TrendingStories />

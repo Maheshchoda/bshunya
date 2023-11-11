@@ -21,7 +21,7 @@ const OurTopPicks = async () => {
     <div className="mt-14">
       <h1 className="text-3xl font-bold mb-4">Our Top Picks</h1>
       <hr className="mb-6" />
-      <div className="flex overflow-x-scroll sm:flex-row md:flex-row lg:flex-nowrap xl:flex-nowrap md:justify-center">
+      <div className="flex overflow-x-scroll sm:flex-row md:flex-row lg:flex-nowrap xl:flex-nowrap md:justify-center pl-2 md:pl-36 xl:pl-80">
         {RecommendedArticles.map((article, index) => (
           <Link href={`/articles/${article.slug}`} key={index}>
             <div className="min-w-[250px] sm:min-w-[200px] md:min-w-[150px] lg:min-w-[250px] xl:min-w-[250px] h-[200px] sm:h-[150px] md:h-[150px] lg:h-[200px] xl:h-[200px] m-2">

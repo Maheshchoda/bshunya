@@ -27,10 +27,11 @@ const TrendingStories = async () => {
         {TrendingArticles.map((article, index) => (
           <Link href={`/articles/${article.slug}`} key={index}>
             <div className="bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-row items-center space-x-4 p-6">
-              <div className="relative w-full md:w-1/2 lg:w-1/3 h-32">
+              <div className="relative w-full md:w-1/2 lg:w-1/3">
                 <Image
                   src={article.image.cloud.url}
                   alt={article.image.alt}
+                  className="w-full h-full object-cover"
                   width={article.image.width}
                   height={article.image.height}
                 />
