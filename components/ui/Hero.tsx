@@ -19,9 +19,9 @@ const Hero = async () => {
   const secondaryArticles = heroArticles.slice(1);
 
   return (
-    <div className="container mx-auto my-32">
+    <div className="container mx-auto mt-32">
       {/* Mobile Layout */}
-      <div className="md:hidden space-y-4 px-4">
+      <div className="md:hidden space-y-4 mx-4 mb-16">
         {heroArticles.map((article, index) => (
           <Link
             key={index}
@@ -32,7 +32,7 @@ const Hero = async () => {
               <Image
                 src={article.image.cloud.url}
                 alt={article.image.alt}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-fit"
                 sizes="100vw"
                 width={article.image.width}
                 height={article.image.height}
@@ -41,36 +41,44 @@ const Hero = async () => {
             <h2 className="text-2xl font-bold mb-2 text-left">
               {article.title}
             </h2>
-            <p>{article.meta.description}</p>
+            <p className="text-sm font-normal text-gray-700 text-left">
+              {mainArticle.titleCaption}
+            </p>
           </Link>
         ))}
       </div>
       {/* Tablet and Laptop Layout */}
-      <div className="hidden md:block mx-auto">
-        <div className="flex flex-row items-stretch">
+      <div className="hidden md:block max-w-6xl mb-24">
+        <div className="flex flex-row items-stretch gap-x-16">
           {/* Left Part - Main Hero Article */}
           {mainArticle && (
-            <Link href={`/articles/${mainArticle.slug}`} className="w-1/2">
-              <div
-                className="overflow-hidden mb-8 relative"
-                style={{ paddingTop: "56.25%" }}
-              >
+            <Link
+              href={`/articles/${mainArticle.slug}`}
+              className="flex-1 block group"
+            >
+              <div className="overflow-hidden">
                 <Image
                   src={mainArticle.image.cloud.url}
                   alt={mainArticle.image.alt}
-                  className="absolute top-0 left-0 w-full h-full object-cover"
-                  fill
+                  width={480}
+                  height={390}
+                  className="transition-transform duration-300 group-hover:scale-105"
+                  priority
                 />
               </div>
-              <h2 className="text-4xl font-bold mb-4">{mainArticle.title}</h2>
-              <p>{mainArticle.meta.description}</p>
+              <h2 className="text-4xl font-bold my-4 group-hover:text-blue-600">
+                {mainArticle.title}
+              </h2>
+              <p className="text-base font-normal text-gray-700 text-left">
+                {mainArticle.titleCaption}
+              </p>
             </Link>
           )}
           {/* Right Part - Secondary Hero Articles */}
-          <div className="w-1/2 flex flex-col space-y-8 pl-8">
+          <div className="flex-1 flex flex-col space-y-8">
             {secondaryArticles.map((article, index) => (
               <Link
-                className="flex"
+                className="flex group"
                 href={`/articles/${article.slug}`}
                 key={index}
               >
@@ -79,14 +87,19 @@ const Hero = async () => {
                   <Image
                     src={article.image.cloud.url}
                     alt={article.image.alt}
-                    className="w-full h-full object-cover"
-                    width={article.image.width}
-                    height={article.image.height}
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    width={200}
+                    height={140}
+                    priority
                   />
                 </div>
-                <div className="w-1/2 pl-4 flex flex-col justify-center">
-                  <h2 className="text-xl font-bold mb-2">{article.title}</h2>
-                  <p>{article.meta.description}</p>
+                <div className="w-1/2 flex flex-col justify-center">
+                  <h2 className="text-xl font-bold mb-2 group-hover:text-blue-600">
+                    {article.title}
+                  </h2>
+                  <p className="text-sm md:text-base lg:text-lg xl:text-xl font-normal text-gray-700 text-left">
+                    {article.meta.description}
+                  </p>
                 </div>
               </Link>
             ))}

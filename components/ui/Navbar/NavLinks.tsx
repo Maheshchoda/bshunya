@@ -6,7 +6,7 @@ interface NavLinksProps {
 }
 
 const NavLinks = ({ closeMenu, className }: NavLinksProps) => {
-  const links = ["HairCare", "SkinCare", "Diet", "Health"];
+  const links = ["HairCare", "SkinCare", "EatRight", "BabyWellness"];
 
   return (
     <div className={className}>

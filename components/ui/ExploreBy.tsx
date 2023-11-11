@@ -1,27 +1,30 @@
 import Image from "next/image";
-import fruitsAndVeggies from "@/public/images/fruitsAndVeggies.webp";
+import Nutrition from "@/public/images/nutrition.webp";
+import Yoga from "@/public/images/yoga.webp";
+import Health from "@/public/images/health.webp";
+import Fitness from "@/public/images/fitness.webp";
 import Link from "next/link";
 
 const ImageData = [
   {
-    imageUrl: fruitsAndVeggies,
-    imageHeading: "Fruits",
-    category: "health",
+    imageSRC: Nutrition,
+    imageTitle: "Nutrition",
+    category: "nutrition",
   },
   {
-    imageUrl: fruitsAndVeggies,
-    imageHeading: "Yoga",
+    imageSRC: Yoga,
+    imageTitle: "Yoga",
     category: "yoga",
   },
   {
-    imageUrl: fruitsAndVeggies,
-    imageHeading: "Fitness",
-    category: "fitness",
+    imageSRC: Health,
+    imageTitle: "Health",
+    category: "health",
   },
   {
-    imageUrl: fruitsAndVeggies,
-    imageHeading: "Sleep",
-    category: "sleep",
+    imageSRC: Fitness,
+    imageTitle: "Fitness",
+    category: "fitness",
   },
 ];
 
@@ -38,11 +41,13 @@ const ExploreBy = () => {
             <div className="flex flex-col items-center">
               <Image
                 className="w-24 h-24 md:w-32 md:h-32 sm:w-28 sm:h-28 rounded-full"
-                src={item.imageUrl}
-                alt={item.imageHeading}
+                src={item.imageSRC}
+                alt={item.imageTitle}
                 sizes="100vw"
               />
-              <p className="mt-2 text-center">{item.imageHeading}</p>
+              <p className="mt-2 text-base md:text-xl font-semibold text-center">
+                {item.imageTitle}
+              </p>
             </div>
           </Link>
         ))}
