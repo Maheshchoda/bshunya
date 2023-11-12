@@ -31,10 +31,9 @@ const ImageData = [
 const ExploreBy = () => {
   return (
     <div className="container mb-10 mx-auto px-4">
-      <h2 className="text-2xl font-bold mb-2 border-b-2 border-gray-300">
+      <h2 className="text-2xl font-bold mb-2 border-b-2 pb-4 border-gray-300">
         Explore by
       </h2>
-
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4">
         {ImageData.map((item, index) => (
           <Link key={index} href={`/category/${item.category}`}>
