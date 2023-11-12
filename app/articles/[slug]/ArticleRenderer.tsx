@@ -28,11 +28,11 @@ const ContentRenderer = ({ element }: { element: ContentElementProps }) => {
 
 const ArticleContent = ({ Article }: ArticleProps) => {
   const { title, image } = Article;
-  const { cloud, alt, width, height } = image;
+  const { cloud, alt } = image;
   const children = Article.content.root.children;
 
   return (
-    <main className="mx-auto max-w-screen-lg px-4 lg:px-0">
+    <main className="mx-auto max-w-screen-md px-4 lg:mr-80">
       <h1 className="text-2xl font-bold leading-tight text-gray-900 mt-6 md:mt-8 lg:text-4xl lg:leading-none">
         {title}
       </h1>
@@ -40,9 +40,9 @@ const ArticleContent = ({ Article }: ArticleProps) => {
         <Image
           src={cloud.url}
           alt={alt}
-          width={width}
-          height={height}
-          className="rounded-lg w-full object-cover"
+          width={750}
+          height={420}
+          className="rounded-lg object-fill h-auto w-full sm:h-[420px] sm:w-[750px] lg:h-[420px] lg:w-[750px]"
         />
       </div>
       <article className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto">
