@@ -53,7 +53,7 @@ export interface ArticleDataProps {
   id: string;
   image: ImageProps;
   title: string;
-  titleCaption: string;
+  caption: string;
   slug: string;
   tags: TagProps[];
   cloud: {

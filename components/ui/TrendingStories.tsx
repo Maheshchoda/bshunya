@@ -41,7 +41,7 @@ const TrendingStories = async () => {
                   {article.title}
                 </h3>
                 <p className="hidden md:block text-sm text-gray-600">
-                  {article.meta.description}
+                  {article.caption}
                 </p>
               </div>
             </div>

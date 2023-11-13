@@ -42,7 +42,7 @@ const Hero = async () => {
               {article.title}
             </h2>
             <p className="text-sm font-normal text-gray-700 text-left">
-              {mainArticle.titleCaption}
+              {mainArticle.caption}
             </p>
           </Link>
         ))}
@@ -66,7 +66,7 @@ const Hero = async () => {
                 {mainArticle.title}
               </h2>
               <p className="text-base font-normal text-gray-700 text-left">
-                {mainArticle.titleCaption}
+                {mainArticle.caption}
               </p>
             </Link>
           )}
@@ -95,7 +95,7 @@ const Hero = async () => {
                     {article.title}
                   </h2>
                   <p className="text-sm md:text-base lg:text-lg xl:text-xl font-normal text-gray-700">
-                    {article.titleCaption}
+                    {article.caption}
                   </p>
                 </div>
               </Link>
