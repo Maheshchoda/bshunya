@@ -2,6 +2,7 @@ import { ImageProps } from "./ArticleProps";
 
 export interface TextProps {
   type: "text";
+  format?: number;
   text: string;
 }
 

@@ -26,7 +26,7 @@ const Navbar = (): JSX.Element => {
         </div>
 
         <Link href="/" className="mx-auto md:mx-0 text-2xl font-bold">
-          bshunya
+          Bshunya
         </Link>
 
         <div className="hidden md:flex flex-grow items-center ml-20">

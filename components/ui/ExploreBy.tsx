@@ -39,10 +39,11 @@ const ExploreBy = () => {
           <Link key={index} href={`/category/${item.category}`}>
             <div className="flex flex-col items-center">
               <Image
-                className="w-24 h-24 md:w-32 md:h-32 sm:w-28 sm:h-28 rounded-full"
+                className="w-[145px] h-[108px] md:w-32 md:h-32 sm:w-28 sm:h-28 rounded-full"
                 src={item.imageSRC}
                 alt={item.imageTitle}
-                sizes="100vw"
+                width={145}
+                height={108}
               />
               <p className="mt-2 text-base md:text-xl font-semibold text-center">
                 {item.imageTitle}
