@@ -38,13 +38,15 @@ const ExploreBy = () => {
         {ImageData.map((item, index) => (
           <Link key={index} href={`/category/${item.category}`}>
             <div className="flex flex-col items-center">
-              <Image
-                className="w-[145px] h-[108px] md:w-32 md:h-32 sm:w-28 sm:h-28 rounded-full"
-                src={item.imageSRC}
-                alt={item.imageTitle}
-                width={145}
-                height={108}
-              />
+              <div className="w-24 h-24 md:w-32 md:h-32 sm:w-28 sm:h-28 rounded-full overflow-hidden">
+                <Image
+                  src={item.imageSRC}
+                  alt={item.imageTitle}
+                  className="object-cover object-center w-full h-full"
+                  width={145}
+                  height={145}
+                />
+              </div>
               <p className="mt-2 text-base md:text-xl font-semibold text-center">
                 {item.imageTitle}
               </p>

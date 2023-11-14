@@ -7,7 +7,11 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        "md-lg": { min: "768px", max: "999px" },
+      },
+    },
   },
   plugins: [],
 };

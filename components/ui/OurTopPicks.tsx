@@ -14,27 +14,32 @@ async function getRecommendedArticles() {
   return response.json();
 }
 
+const articleClassNames = "min-w-[250px] h-[200px] m-2";
+
 const OurTopPicks = async () => {
   const RecommendedArticles: ArticleDataProps[] =
     await getRecommendedArticles();
+
   return (
     <div className="mt-14">
       <h1 className="text-3xl font-bold mb-4">Our Top Picks</h1>
       <hr className="mb-6" />
-      <div className="flex overflow-x-scroll sm:flex-row md:flex-row lg:flex-nowrap xl:flex-nowrap md:justify-center pl-2 md:pl-36 xl:pl-80">
+      <div className="flex overflow-x-auto pb-6 pl-2 space-x-2">
         {RecommendedArticles.map((article, index) => (
           <Link href={`/articles/${article.slug}`} key={index}>
-            <div className="min-w-[250px] sm:min-w-[200px] md:min-w-[150px] lg:min-w-[250px] xl:min-w-[250px] h-[200px] sm:h-[150px] md:h-[150px] lg:h-[200px] xl:h-[200px] m-2">
-              <div className="h-4/5 relative rounded-t-lg overflow-hidden">
+            <div className={`${articleClassNames} flex-shrink-0`}>
+              <div className="relative rounded-t-lg overflow-hidden h-4/5">
                 <Image
                   src={article.image.cloud.url}
                   alt={article.image.alt}
-                  width={article.image.width}
-                  height={article.image.height}
+                  width={260}
+                  height={190}
                 />
               </div>
-              <div className="h-1/5 flex items-center justify-center bg-white rounded-b-lg">
-                <h3 className="text-center">{article.title}</h3>
+              <div className="h-1/5 flex items-center justify-center bg-white rounded-b-lg pt-2">
+                <h3 className="text-left text-sm font-semibold text-gray-800 p-2">
+                  {article.title}
+                </h3>
               </div>
             </div>
           </Link>

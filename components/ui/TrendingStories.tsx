@@ -23,26 +23,31 @@ const TrendingStories = async () => {
         <hr className="border-t border-gray-300 w-full" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {TrendingArticles.map((article, index) => (
           <Link href={`/articles/${article.slug}`} key={index}>
-            <div className="bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-row items-center space-x-4 p-6">
-              <div className="relative w-full md:w-1/2 lg:w-1/3">
-                <Image
-                  src={article.image.cloud.url}
-                  alt={article.image.alt}
-                  className="w-full h-full object-cover"
-                  width={article.image.width}
-                  height={article.image.height}
-                />
-              </div>
-              <div className="w-2/3 flex flex-col justify-center">
-                <h3 className="text-lg font-semibold mb-2 text-gray-800">
-                  {article.title}
-                </h3>
-                <p className="hidden md:block text-sm text-gray-600">
-                  {article.caption}
-                </p>
+            <div className="cursor-pointer  bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              <div className="flex flex-col md:flex-row items-center">
+                <div className="w-full md:w-1/2">
+                  <div className="w-full h-0 pb-[75%] relative">
+                    <Image
+                      src={article.image.cloud.url}
+                      alt={article.image.alt}
+                      className="absolute top-0 left-0 w-full h-full object-cover"
+                      width={article.image.width}
+                      height={article.image.height}
+                    />
+                    <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 mt-4 md:mt-0 md:ml-4 p-2">
+                  <h3 className="md:text-xl md-lg:text-sm font-semibold mb-2 text-gray-800">
+                    {article.title}
+                  </h3>
+                  <p className="md:text-xs sm:text-xs text-gray-600">
+                    {article.caption}
+                  </p>
+                </div>
               </div>
             </div>
           </Link>

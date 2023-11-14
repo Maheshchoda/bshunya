@@ -32,7 +32,7 @@ const Hero = async () => {
               <Image
                 src={article.image.cloud.url}
                 alt={article.image.alt}
-                className="w-full h-full object-fit"
+                className="w-full h-full object-cover"
                 sizes="100vw"
                 width={article.image.width}
                 height={article.image.height}
@@ -42,7 +42,7 @@ const Hero = async () => {
               {article.title}
             </h2>
             <p className="text-sm font-normal text-gray-700 text-left">
-              {mainArticle.caption}
+              {article.caption}
             </p>
           </Link>
         ))}
@@ -52,7 +52,7 @@ const Hero = async () => {
         <div className="flex flex-row items-stretch gap-x-12">
           {mainArticle && (
             <Link href={`/articles/${mainArticle.slug}`} className="w-1/2">
-              <div className="overflow-hidden">
+              <div className="overflow-hidden relative">
                 <Image
                   src={mainArticle.image.cloud.url}
                   alt={mainArticle.image.alt}
@@ -61,6 +61,7 @@ const Hero = async () => {
                   className="w-[470px] h-[360px] object-fit"
                   priority
                 />
+                <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>
               <h2 className="text-4xl font-bold my-4 group-hover:text-blue-600">
                 {mainArticle.title}
@@ -79,7 +80,7 @@ const Hero = async () => {
                 key={index}
               >
                 {/* Secondary Article Image */}
-                <div className="w-1/3 overflow-hidden">
+                <div className="w-1/3 overflow-hidden relative">
                   <Image
                     src={article.image.cloud.url}
                     alt={article.image.alt}
@@ -88,6 +89,7 @@ const Hero = async () => {
                     height={138}
                     priority
                   />
+                  <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
                 </div>
                 {/* Secondary Article Text */}
                 <div className="w-2/3 flex flex-col justify-center pl-6">
