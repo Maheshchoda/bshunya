@@ -5,12 +5,35 @@ const FeaturedTopics = () => {
   const articles = [
     {
       id: 1,
-      title: "Article 1",
-      slug: "/articles/29-ways-to-lose-weight-naturally-(backed-by-science)",
+      title: "Ditch Late Dinners: The Surprising Secret to Better Health!",
+      slug: "/articles/midnight-feasts-vs.-sunrise-eats:-the-best-time-to-have-your-big-meal",
     },
-    { id: 2, title: "Article 2", slug: "/articles/trending-2-" },
-    { id: 3, title: "Article 3", slug: "/articles/trending-2-" },
-    { id: 4, title: "Article 4", slug: "/articles/tredning-now-checking-4" },
+    {
+      id: 2,
+      title: "Discover Time-Honored Oil Extraction Techniques Today!",
+      slug: "/articles/reviving-tradition:-the-power-of-pure-oils-in-health-and-community",
+    },
+    {
+      id: 3,
+      title: "Exposed: The Real Scoop on Iodized Salt!",
+      slug: "/articles/exposed:-the-real-scoop-on-iodized-salt!",
+    },
+    {
+      id: 4,
+      title: "Organic Morning Feast: Vitality Through Nature",
+      slug: "/articles/nature's-bounty-breakfast:-energise-your-day-the-organic-way",
+    },
+    {
+      id: 5,
+      title: "Reviving Gut Health with Ancient Wisdom",
+      slug: "/articles/cultivating-gut-health:-beyond-probiotics-to-traditional-indian-wisdom",
+    },
+
+    {
+      id: 6,
+      title: "Unlock Health Secrets: Millets Revolutionize Wellness!",
+      slug: "/articles/balancing-our-health:-microbial,-glucose,-and-hormone-harmony-through-diet",
+    },
   ];
 
   return (
@@ -22,7 +45,7 @@ const FeaturedTopics = () => {
           <Link
             key={article.id}
             href={article.slug}
-            className="block p-4 border-b border-gray-300 last:border-0 text-lg font-semibold hover:text-blue-600 transition"
+            className="block p-4 border-b border-gray-300 text-lg font-semibold hover:text-blue-600 transition"
             passHref
           >
             {article.title}
