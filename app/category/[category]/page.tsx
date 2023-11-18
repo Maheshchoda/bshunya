@@ -21,26 +21,30 @@ const CategoryPage = async ({
 }) => {
   const articles: ArticleDataProps[] = await fetchArticlesByCategory(category);
   return (
-    <div className="container mx-auto  max-w-screen-lg my-32">
-      <CategoryTabs />
+    <div className="container mx-auto  max-w-screen-lg my-24 sm:my-32">
+      <CategoryTabs selectedCategory={category} />
+
       <div className="grid grid-cols-1 gap-8">
         {articles.map((article, index) => (
           <Link href={`/articles/${article.slug}`} key={index}>
-            <div className="bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-center space-x-0 md:space-x-4 p-6">
-              <div className="relative w-full h-32">
+            <div className="bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-start">
+              <div className="md:w-1/2 relative">
                 <Image
                   src={article.image.cloud.url}
                   alt={article.image.alt}
-                  width={article.image.width}
-                  height={article.image.height}
+                  className="w-full h-auto object-cover"
+                  width={511}
+                  height={292}
+                  unoptimized
                 />
+                <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>
-              <div className="flex flex-col justify-center w-full">
-                <h3 className="text-lg font-semibold mb-2 text-gray-800">
+              <div className="p-6 md:w-1/2 flex flex-col justify-between">
+                <h3 className="lg:text-4xl md-lg:text-3xl md:text-2xl font-semibold text-gray-800 leading-snug mb-4">
                   {article.title}
                 </h3>
-                <p className="text-sm text-gray-600">
-                  {article.meta.description}
+                <p className="text-sm md:text-base text-gray-600 self-center">
+                  {article.caption}
                 </p>
               </div>
             </div>
