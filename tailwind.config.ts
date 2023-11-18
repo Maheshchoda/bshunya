@@ -9,6 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
+        xs: { min: "320px", max: "479px" },
+        "sm-only": { min: "480px", max: "680px" },
         "md-lg": { min: "768px", max: "999px" },
       },
     },
