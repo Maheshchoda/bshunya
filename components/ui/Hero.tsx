@@ -22,9 +22,9 @@ const Hero = async () => {
     <div className="container mx-auto">
       {/* Mobile Layout */}
       <div className="md:hidden space-y-4 mx-4 mt-24 mb-16">
-        {heroArticles.map((article, index) => (
+        {heroArticles.map((article) => (
           <Link
-            key={index}
+            key={article._id}
             href={`/articles/${article.slug}`}
             className="block p-4 border-b border-gray-200"
           >
@@ -48,17 +48,17 @@ const Hero = async () => {
         ))}
       </div>
       {/* Tablet and Laptop Layout */}
-      <div className="hidden md:block max-w-6xl mx-auto mt-32 mb-40">
+      <div className="hidden md:block max-w-6xl mx-auto mt-32 lg:mb-32 md:mb-16">
         <div className="flex flex-row items-stretch gap-x-12">
           {mainArticle && (
             <Link href={`/articles/${mainArticle.slug}`} className="w-1/2">
-              <div className="overflow-hidden relative">
+              <div className="overflow-hidden relative h-[100px] lg:h-[380px] md:h-[280px]">
                 <Image
                   src={mainArticle.image.cloud.url}
                   alt={mainArticle.image.alt}
-                  width={470}
-                  height={360}
-                  className="w-[470px] h-[360px] object-fit"
+                  fill
+                  sizes="100vw"
+                  className="rounded object-cover"
                   priority
                 />
                 <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
@@ -72,27 +72,27 @@ const Hero = async () => {
             </Link>
           )}
           {/* Right Part - Secondary Hero Articles */}
-          <div className="flex-1 flex flex-col space-y-8">
-            {secondaryArticles.map((article, index) => (
+          <div className="flex flex-col flex-1 space-y-10">
+            {secondaryArticles.map((article) => (
               <Link
                 className="flex group items-center" // Center items vertically
                 href={`/articles/${article.slug}`}
-                key={index}
+                key={article._id}
               >
                 {/* Secondary Article Image */}
-                <div className="w-1/3 overflow-hidden relative">
+                <div className="relative w-1/3 h-28 lg:w-56 lg:h-40 md:w-30  md:h-36 overflow-hidden ">
                   <Image
                     src={article.image.cloud.url}
                     alt={article.image.alt}
-                    className="w-[185px] h-[138px] object-cover"
-                    width={185}
-                    height={138}
+                    className="rounded object-cover"
+                    fill
+                    sizes="100vw"
                     priority
                   />
                   <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
                 </div>
                 {/* Secondary Article Text */}
-                <div className="w-2/3 flex flex-col justify-center pl-6">
+                <div className="w-2/3 flex flex-col justify-center pl-3">
                   <h2 className="text-xl font-bold mb-2 group-hover:text-blue-600">
                     {article.title}
                   </h2>

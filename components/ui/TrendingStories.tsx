@@ -24,18 +24,18 @@ const TrendingStories = async () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {TrendingArticles.map((article, index) => (
-          <Link href={`/articles/${article.slug}`} key={index}>
+        {TrendingArticles.map((article) => (
+          <Link href={`/articles/${article.slug}`} key={article._id}>
             <div className="cursor-pointer  bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
               <div className="flex flex-col md:flex-row items-center">
                 <div className="w-full md:w-1/2">
-                  <div className="w-full h-0 pb-[75%] relative">
+                  <div className="relative w-auto h-44">
                     <Image
                       src={article.image.cloud.url}
                       alt={article.image.alt}
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                      width={article.image.width}
-                      height={article.image.height}
+                      fill
+                      sizes="100vw"
+                      className="object-fit"
                     />
                     <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
                   </div>

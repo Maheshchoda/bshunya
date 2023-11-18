@@ -25,18 +25,20 @@ const OurTopPicks = async () => {
       <h1 className="text-3xl font-bold mb-4">Our Top Picks</h1>
       <hr className="mb-6" />
       <div className="flex overflow-x-auto pb-6 pl-2 space-x-2">
-        {RecommendedArticles.map((article, index) => (
-          <Link href={`/articles/${article.slug}`} key={index}>
+        {RecommendedArticles.map((article) => (
+          <Link href={`/articles/${article.slug}`} key={article._id}>
             <div className={`${articleClassNames} flex-shrink-0`}>
-              <div className="relative rounded-t-lg overflow-hidden h-4/5">
+              <div className="relative rounded-t-lg overflow-hidden h-40">
                 <Image
                   src={article.image.cloud.url}
                   alt={article.image.alt}
-                  width={260}
-                  height={190}
+                  fill
+                  sizes="100vw"
+                  className="object-fit"
                 />
+                <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>
-              <div className="h-1/5 flex items-center justify-center bg-white rounded-b-lg pt-2">
+              <div className="h-16 flex items-center justify-center bg-white rounded-b-lg pt-2">
                 <h3 className="text-left text-sm font-semibold text-gray-800 p-2">
                   {article.title}
                 </h3>

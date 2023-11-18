@@ -7,21 +7,25 @@ import Link from "next/link";
 
 const ImageData = [
   {
+    id: 1,
     imageSRC: Nutrition,
     imageTitle: "Nutrition",
     category: "nutrition",
   },
   {
+    id: 2,
     imageSRC: Yoga,
     imageTitle: "Yoga",
     category: "yoga",
   },
   {
+    id: 3,
     imageSRC: Health,
     imageTitle: "Health",
     category: "health",
   },
   {
+    id: 4,
     imageSRC: Fitness,
     imageTitle: "Fitness",
     category: "fitness",
@@ -35,8 +39,8 @@ const ExploreBy = () => {
         Explore by
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4">
-        {ImageData.map((item, index) => (
-          <Link key={index} href={`/category/${item.category}`}>
+        {ImageData.map((item) => (
+          <Link key={item.id} href={`/category/${item.category}`}>
             <div className="flex flex-col items-center">
               <div className="w-24 h-24 md:w-32 md:h-32 sm:w-28 sm:h-28 rounded-full overflow-hidden">
                 <Image
