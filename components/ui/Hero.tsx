@@ -19,23 +19,23 @@ const Hero = async () => {
   const secondaryArticles = heroArticles.slice(1);
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto md:px-1 relative">
       {/* Mobile Layout */}
-      <div className="md:hidden space-y-4 mx-4 mt-24 mb-16">
+      <div className="md:hidden space-y-4 mt-20 mb-16">
         {heroArticles.map((article) => (
           <Link
             key={article._id}
             href={`/articles/${article.slug}`}
-            className="block p-4 border-b border-gray-200"
+            className="block py-4 px-2 border-b border-gray-200"
           >
-            <div className="overflow-hidden">
+            <div className="relative overflow-hidden">
               <Image
                 src={article.image.cloud.url}
                 alt={article.image.alt}
-                className="w-full h-full object-cover"
-                sizes="100vw"
-                width={article.image.width}
-                height={article.image.height}
+                width={380}
+                height={150}
+                className="w-auto h-auto object-fit"
+                priority
               />
             </div>
             <h2 className="text-2xl font-bold my-2 text-left">
@@ -52,14 +52,14 @@ const Hero = async () => {
         <div className="flex flex-row items-stretch gap-x-12">
           {mainArticle && (
             <Link href={`/articles/${mainArticle.slug}`} className="w-1/2">
-              <div className="overflow-hidden relative h-[100px] lg:h-[380px] md:h-[280px]">
+              <div className="relative overflow-hidden">
                 <Image
                   src={mainArticle.image.cloud.url}
                   alt={mainArticle.image.alt}
-                  fill
-                  sizes="100vw"
-                  className="rounded object-cover"
+                  width={520}
+                  height={390}
                   priority
+                  className="rounded object-cover lg:w-[520px] lg:h-[390px] md:w-[400px] md:h-[250px]"
                 />
                 <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>
@@ -75,28 +75,27 @@ const Hero = async () => {
           <div className="flex flex-col flex-1 space-y-10">
             {secondaryArticles.map((article) => (
               <Link
-                className="flex group items-center" // Center items vertically
+                className="flex group items-start" // Center items vertically
                 href={`/articles/${article.slug}`}
                 key={article._id}
               >
                 {/* Secondary Article Image */}
-                <div className="relative w-1/3 h-28 lg:w-56 lg:h-40 md:w-30  md:h-36 overflow-hidden ">
+                <div className="relative w-1/3  overflow-hidden ">
                   <Image
                     src={article.image.cloud.url}
                     alt={article.image.alt}
-                    className="rounded object-cover"
-                    fill
-                    sizes="100vw"
-                    priority
+                    width={185}
+                    height={138}
+                    className="rounded object-cover lg:w-52 lg:h-40 md:w-40 md:h-32"
                   />
                   <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
                 </div>
                 {/* Secondary Article Text */}
                 <div className="w-2/3 flex flex-col justify-center pl-3">
-                  <h2 className="text-xl font-bold mb-2 group-hover:text-blue-600">
+                  <h2 className="md:text-lg lg:text-xl font-bold mb-2 group-hover:text-blue-600">
                     {article.title}
                   </h2>
-                  <p className="text-sm md:text-base lg:text-lg xl:text-xl font-normal text-gray-700">
+                  <p className="text-sm md:text-base lg:text-md font-normal text-gray-700">
                     {article.caption}
                   </p>
                 </div>

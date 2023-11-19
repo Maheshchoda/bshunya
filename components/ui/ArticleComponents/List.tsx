@@ -3,7 +3,7 @@ import renderText from "./RenderText";
 
 const ListItemComponent = ({ element }: { element: ListItemProps }) => (
   <li className="mb-3 text-gray-700 text-base leading-relaxed">
-    {element.children.map((child, index) => renderText(child, index))}
+    {element.children.map((child) => renderText(child))}
   </li>
 );
 

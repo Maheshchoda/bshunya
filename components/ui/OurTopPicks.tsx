@@ -34,7 +34,7 @@ const OurTopPicks = async () => {
                   alt={article.image.alt}
                   fill
                   sizes="100vw"
-                  className="object-fit"
+                  className="object-cover"
                 />
                 <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>

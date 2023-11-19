@@ -14,7 +14,7 @@ const ImageComponent = ({ element }: { element: UploadProps }) => {
       <div className="w-full h-auto relative">
         <Image
           src={url}
-          alt={alt || ""}
+          alt={alt}
           className="rounded-lg w-full object-cover"
           objectFit="cover"
           width={400}

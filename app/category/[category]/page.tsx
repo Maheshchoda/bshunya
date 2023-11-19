@@ -27,7 +27,7 @@ const CategoryPage = async ({
       <div className="grid grid-cols-1 gap-8">
         {articles.map((article, index) => (
           <Link href={`/articles/${article.slug}`} key={index}>
-            <div className="bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-start">
+            <div className="bg-white overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-start">
               <div className="md:w-1/2 relative">
                 <Image
                   src={article.image.cloud.url}
