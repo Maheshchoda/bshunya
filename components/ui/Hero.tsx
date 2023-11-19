@@ -59,7 +59,7 @@ const Hero = async () => {
                   width={520}
                   height={390}
                   priority
-                  className="rounded object-cover lg:w-[520px] lg:h-[390px] md:w-[400px] md:h-[250px]"
+                  className="rounded object-cover w-auto h-auto lg:w-[520px] lg:h-[390px] md:w-[400px] md:h-[250px]"
                 />
                 <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>

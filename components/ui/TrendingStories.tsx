@@ -17,7 +17,7 @@ async function getTrendingArticles() {
 const TrendingStories = async () => {
   const TrendingArticles: ArticleDataProps[] = await getTrendingArticles();
   return (
-    <div className="p-4">
+    <div>
       <div className="mb-6">
         <h2 className="text-2xl font-semibold text-gray-800 mb-2">Trending</h2>
         <hr className="border-t border-gray-300 w-full" />
@@ -29,13 +29,13 @@ const TrendingStories = async () => {
             <div className="cursor-pointer  bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
               <div className="flex flex-col md:flex-row items-center">
                 <div className="w-full md:w-1/2">
-                  <div className="relative w-auto h-44">
+                  <div className="relative w-auto">
                     <Image
                       src={article.image.cloud.url}
                       alt={article.image.alt}
-                      fill
-                      sizes="100vw"
-                      className="object-cover"
+                      width={240}
+                      height={180}
+                      className="w-auto h-auto object-cover"
                     />
                     <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
                   </div>
