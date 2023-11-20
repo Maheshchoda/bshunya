@@ -32,20 +32,23 @@ const ArticleContent = ({ Article }: ArticleProps) => {
   const children = Article.content.root.children;
 
   return (
-    <main className="mx-auto max-w-screen-md px-4 lg:mr-80">
-      <h1 className="text-2xl font-bold leading-tight text-gray-900 mt-6 md:mt-8 lg:text-4xl lg:leading-none">
+    <main className="flex flex-col justify-center max-w-screen-md">
+      <h1 className="text-2xl font-bold leading-tight text-gray-900 md:mt-8 lg:text-4xl lg:leading-none px-2 md:px-4">
         {title}
       </h1>
-      <div className="relative w-auto h-40 xs:h-44 sm-only:h-60 sm:h-80 md:h-96 my-4 md:my-6">
+      <div className="relative my-4 md:px-4">
         <Image
           src={cloud.url}
           alt={alt}
-          fill
-          sizes="100vw"
-          className="rounded-lg object-fit"
+          width={750}
+          height={420}
+          className="object-fit w-auto md:h-96 lg:h-[420px]"
         />
       </div>
-      <article className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto">
+      <h3 className="text-xl font-bold leading-tight text-gray-900 my-4 md:mt-8 lg:text-2xl lg:leading-none px-4">
+        {Article.caption}
+      </h3>
+      <article className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto px-4">
         {children.map((element: ContentElementProps, index: number) => (
           <ContentRenderer key={index} element={element} />
         ))}
