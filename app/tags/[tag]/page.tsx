@@ -51,7 +51,7 @@ const TagPage = async ({ params: { tag } }: { params: { tag: string } }) => {
                 <Image
                   src={article.image.cloud.url}
                   alt={article.image.alt}
-                  className="md:h-72 object-cover"
+                  className="h-auto w-auto md:h-72 object-cover"
                   width={511}
                   height={292}
                 />
@@ -61,7 +61,7 @@ const TagPage = async ({ params: { tag } }: { params: { tag: string } }) => {
                 <h3 className="lg:text-4xl md-lg:text-3xl md:text-2xl font-semibold text-gray-800 leading-snug mb-4">
                   {article.title}
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 self-center">
+                <p className="text-sm md:text-base text-gray-600 text-left">
                   {article.caption}
                 </p>
               </div>

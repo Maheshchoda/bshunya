@@ -28,14 +28,13 @@ const CategoryPage = async ({
         {articles.map((article, index) => (
           <Link href={`/articles/${article.slug}`} key={index}>
             <div className="bg-white overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-start">
-              <div className="md:w-1/2 relative">
+              <div className="md:w-1/2 relative my-4 md:px-4 md:h-64">
                 <Image
                   src={article.image.cloud.url}
                   alt={article.image.alt}
                   className="w-full h-auto object-cover"
                   width={511}
                   height={292}
-                  unoptimized
                 />
                 <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>
@@ -43,7 +42,7 @@ const CategoryPage = async ({
                 <h3 className="lg:text-4xl md-lg:text-3xl md:text-2xl font-semibold text-gray-800 leading-snug mb-4">
                   {article.title}
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 self-center">
+                <p className="text-sm md:text-base text-gray-600 text-left">
                   {article.caption}
                 </p>
               </div>

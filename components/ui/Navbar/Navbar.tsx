@@ -27,18 +27,18 @@ const Navbar = (): JSX.Element => {
 
         <Link
           href="/"
-          className="mx-auto md:mx-0 text-2xl md:text-3xl font-bold"
+          className="mx-auto md:mx-0 md:pl-2 lg:pl-0 text-2xl md:text-3xl font-bold"
         >
           Bshunya
         </Link>
 
         <div className="hidden md:flex flex-grow items-center ml-20">
-          <NavLinks className="flex flex-grow space-x-24 text-xl font-bold" />
+          <NavLinks className="flex flex-grow space-x-16 lg:space-x-24 lg:text-xl font-bold" />
         </div>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 bg-gray-700 opacity-100 z-40 flex items-center justify-center transition-opacity duration-1000">
+        <div className="md:hidden fixed inset-0 mt-14 bg-gray-700 opacity-100 z-40 flex items-center justify-center transition-opacity duration-1000">
           <NavLinks
             closeMenu={closeMenu}
             className="flex flex-col space-y-6 text-white text-4xl"

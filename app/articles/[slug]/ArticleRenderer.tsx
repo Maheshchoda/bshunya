@@ -36,13 +36,14 @@ const ArticleContent = ({ Article }: ArticleProps) => {
       <h1 className="text-2xl font-bold leading-tight text-gray-900 md:mt-8 lg:text-4xl lg:leading-none px-2 md:px-4">
         {title}
       </h1>
-      <div className="relative my-4 md:px-4">
+      <div className="relative my-4 md:px-4 md:h-96 lg:h-[420px]">
         <Image
           src={cloud.url}
           alt={alt}
           width={750}
           height={420}
-          className="object-fit w-auto md:h-96 lg:h-[420px]"
+          className="object-fit w-auto h-auto"
+          priority
         />
       </div>
       <h3 className="text-xl font-bold leading-tight text-gray-900 my-4 md:mt-8 lg:text-2xl lg:leading-none px-4">
