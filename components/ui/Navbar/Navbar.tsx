@@ -19,26 +19,29 @@ const Navbar = (): JSX.Element => {
   const closeMenu = (): void => setMenuOpen(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 p-4 bg-gray-400 text-gray-800">
+    <nav className="fixed top-0 w-full z-50 py-3 sm:py-5 bg-gray-900 text-white">
       <div className="container mx-auto max-w-screen-lg flex flex-start items-center">
         <div className="md:hidden absolute right-4 top-4 z-50">
           <MenuIcon menuOpen={menuOpen} toggleMenu={toggleMenu} />
         </div>
 
-        <Link href="/" className="mx-auto md:mx-0 text-2xl font-bold">
+        <Link
+          href="/"
+          className="mx-auto md:mx-0 text-2xl md:text-3xl font-bold"
+        >
           Bshunya
         </Link>
 
         <div className="hidden md:flex flex-grow items-center ml-20">
-          <NavLinks className="flex flex-grow space-x-24 text-lg" />
+          <NavLinks className="flex flex-grow space-x-24 text-xl font-bold" />
         </div>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 bg-black opacity-100 z-40 flex items-center justify-center transition-opacity duration-1000">
+        <div className="md:hidden fixed inset-0 bg-gray-700 opacity-100 z-40 flex items-center justify-center transition-opacity duration-1000">
           <NavLinks
             closeMenu={closeMenu}
-            className="flex flex-col space-y-4 text-white text-3xl"
+            className="flex flex-col space-y-6 text-white text-4xl"
           />
         </div>
       )}

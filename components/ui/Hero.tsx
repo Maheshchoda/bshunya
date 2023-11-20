@@ -21,7 +21,7 @@ const Hero = async () => {
   return (
     <div className="container mx-auto md:px-1 relative">
       {/* Mobile Layout */}
-      <div className="md:hidden flex flex-col space-y-4 mt-20 mb-16">
+      <div className="md:hidden flex flex-col space-y-4 mt-16 sm:mt-24 mb-16">
         {heroArticles.map((article) => (
           <Link
             key={article._id}
@@ -63,7 +63,7 @@ const Hero = async () => {
                 />
                 <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>
-              <h2 className="text-4xl font-bold my-4 group-hover:text-blue-600">
+              <h2 className="text-4xl font-bold my-4 hover:text-blue-600">
                 {mainArticle.title}
               </h2>
               <p className="text-base font-normal text-gray-700 text-left">

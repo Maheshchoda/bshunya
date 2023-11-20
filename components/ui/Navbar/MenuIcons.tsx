@@ -1,4 +1,3 @@
-"use client";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 interface MenuIconProps {
@@ -12,7 +11,7 @@ const MenuIcon = ({ menuOpen, toggleMenu }: MenuIconProps) => (
     className={
       menuOpen
         ? "text-white text-2xl"
-        : "text-gray-800 text-2xl hover:text-gray-600"
+        : "text-white-800 text-2xl hover:text-blue-600"
     }
   >
     {menuOpen ? <FaTimes /> : <FaBars />}

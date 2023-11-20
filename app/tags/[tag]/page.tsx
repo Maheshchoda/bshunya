@@ -35,7 +35,7 @@ const TagPage = async ({ params: { tag } }: { params: { tag: string } }) => {
   const articles: ArticleDataProps[] = await fetchArticlesByTag(tag);
   const { tagPageTitle, tagPageCaption } = getTitleAndCaption(tag);
   return (
-    <div className="container mx-auto  max-w-screen-lg my-32">
+    <div className="container mx-auto  max-w-screen-lg my-24 sm:my-32">
       <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-center font-bold  text-gray-800">
         {tagPageTitle}
       </h2>
@@ -46,15 +46,14 @@ const TagPage = async ({ params: { tag } }: { params: { tag: string } }) => {
       <div className="grid grid-cols-1 gap-8">
         {articles.map((article, index) => (
           <Link href={`/articles/${article.slug}`} key={index}>
-            <div className="bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-start">
+            <div className="bg-white border md:rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-start">
               <div className="md:w-1/2 relative">
                 <Image
                   src={article.image.cloud.url}
                   alt={article.image.alt}
-                  className="w-full h-auto object-cover"
+                  className="md:h-72 object-cover"
                   width={511}
                   height={292}
-                  unoptimized
                 />
                 <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>

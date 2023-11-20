@@ -26,7 +26,7 @@ const TrendingStories = async () => {
       <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center gap-8">
         {TrendingArticles.map((article) => (
           <Link href={`/articles/${article.slug}`} key={article._id}>
-            <div className="cursor-pointer bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
+            <div className="cursor-pointer  bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
               <div className="flex flex-col md:flex-row md:items-start">
                 <div className="w-full md:w-1/2">
                   <div className="relative">
@@ -41,7 +41,7 @@ const TrendingStories = async () => {
                   </div>
                 </div>
                 <div className="w-full mx-1 max-w-md md:w-1/2 md:ml-2 p-1">
-                  <h3 className="md:text-xl md-lg:text-sm font-semibold mb-2 text-gray-800">
+                  <h3 className="md:text-xl md-lg:text-sm font-semibold mb-2 text-gray-800 hover:text-blue-600">
                     {article.title}
                   </h3>
                   <p className="sm:text-xs text-gray-600">{article.caption}</p>
