@@ -21,34 +21,34 @@ const Hero = async () => {
   return (
     <div className="container mx-auto md:px-1 relative">
       {/* Mobile Layout */}
-      <div className="md:hidden space-y-4 mt-20 mb-16">
+      <div className="md:hidden flex flex-col space-y-4 mt-20 mb-16">
         {heroArticles.map((article) => (
           <Link
             key={article._id}
             href={`/articles/${article.slug}`}
-            className="block py-4 px-2 border-b border-gray-200"
+            className="flex flex-col items-center py-4 px-2 border-b border-gray-200"
           >
-            <div className="relative overflow-hidden">
+            <div className="overflow-hidden">
               <Image
                 src={article.image.cloud.url}
                 alt={article.image.alt}
                 width={380}
                 height={150}
-                className="w-auto h-auto object-fit"
+                className="w-auto h-auto object-contain"
                 priority
               />
             </div>
-            <h2 className="text-2xl font-bold my-2 text-left">
+            <h2 className="max-w-md sm:w-auto text-2xl font-bold my-2 text-left">
               {article.title}
             </h2>
-            <p className="text-sm font-normal text-gray-700 text-left">
+            <p className="max-w-md sm:w-auto text-sm font-normal text-gray-700 text-left">
               {article.caption}
             </p>
           </Link>
         ))}
       </div>
       {/* Tablet and Laptop Layout */}
-      <div className="hidden md:block max-w-6xl mx-auto mt-32 lg:mb-32 md:mb-16">
+      <div className="hidden md:block max-w-6xl mx-auto mt-32 lg:mb-32 md:mb-16 justify-center">
         <div className="flex flex-row items-stretch gap-x-12">
           {mainArticle && (
             <Link href={`/articles/${mainArticle.slug}`} className="w-1/2">

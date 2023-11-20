@@ -23,30 +23,28 @@ const TrendingStories = async () => {
         <hr className="border-t border-gray-300 w-full" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center gap-8">
         {TrendingArticles.map((article) => (
           <Link href={`/articles/${article.slug}`} key={article._id}>
-            <div className="cursor-pointer  bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
-              <div className="flex flex-col md:flex-row items-center">
+            <div className="cursor-pointer bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              <div className="flex flex-col md:flex-row md:items-start">
                 <div className="w-full md:w-1/2">
-                  <div className="relative w-auto">
+                  <div className="relative">
                     <Image
                       src={article.image.cloud.url}
                       alt={article.image.alt}
-                      width={240}
-                      height={180}
-                      className="w-auto h-auto object-cover"
+                      width={450}
+                      height={300}
+                      className="md:h-36 lg:h-44 object-cover"
                     />
                     <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
                   </div>
                 </div>
-                <div className="w-full md:w-1/2 mt-4 md:mt-0 md:ml-4 p-2">
+                <div className="w-full mx-1 max-w-md md:w-1/2 md:ml-2 p-1">
                   <h3 className="md:text-xl md-lg:text-sm font-semibold mb-2 text-gray-800">
                     {article.title}
                   </h3>
-                  <p className="md:text-xs sm:text-xs text-gray-600">
-                    {article.caption}
-                  </p>
+                  <p className="sm:text-xs text-gray-600">{article.caption}</p>
                 </div>
               </div>
             </div>
