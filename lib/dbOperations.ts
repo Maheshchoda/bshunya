@@ -18,8 +18,8 @@ export async function getArticleBySlug(
     const articlesCollection = await getCollection();
     return (await articlesCollection.findOne({ slug })) || null;
   } catch (error) {
-    console.log(error);
-    throw error;
+    console.error("Error retrieving article by slug:", error);
+    throw new Error("Unable to retrieve the article. Please try again later.");
   }
 }
 
@@ -35,8 +35,8 @@ export async function getArticlesByQuery(
     }
     return cursor.toArray() || null;
   } catch (error) {
-    console.log(error);
-    throw error;
+    console.error("Error retrieving articles with query:", error);
+    throw new Error("Unable to retrieve articles. Please try again later.");
   }
 }
 
@@ -53,8 +53,8 @@ export async function getArticlesByTag(
     if (articles.length === 0) return null;
     return articles;
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.error("Error retrieving articles with tag:", error);
+    throw new Error("Unable to retrieve articles. Please try again later.");
   }
 }
 
@@ -71,7 +71,7 @@ export async function getArticlesByCategory(
     if (articles.length === 0) return null;
     return articles;
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.error("Error retrieving articles with category:", error);
+    throw new Error("Unable to retrieve articles. Please try again later.");
   }
 }
