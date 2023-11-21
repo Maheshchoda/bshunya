@@ -2,6 +2,7 @@ import { ArticleDataProps } from "@/types/ArticleProps";
 import ArticleContent from "./ArticleRenderer";
 
 async function getArticle(slug: String): Promise<ArticleDataProps | null> {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   const response = await fetch(`http://localhost:3000/api/articles/${slug}`);
   if (!response.ok) return null;
   return response.json();
