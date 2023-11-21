@@ -1,14 +1,6 @@
-import { ArticleDataProps } from "@/types";
-import Image from "next/image";
-import Link from "next/link";
-
-async function fetchArticlesByTag(tag: string) {
-  const response = await fetch(`http://localhost:3000/api/tags/${tag}`, {
-    cache: "no-store",
-  });
-  if (!response.ok) throw new Error("Failed to fetch articles by given tag");
-  return response.json();
-}
+import { Suspense } from "react";
+import TagSkeleton from "./TagSkeleton";
+import Tags from "./Tags";
 
 function getTitleAndCaption(tag: string) {
   let tagPageTitle = "";
@@ -32,7 +24,6 @@ function getTitleAndCaption(tag: string) {
 }
 
 const TagPage = async ({ params: { tag } }: { params: { tag: string } }) => {
-  const articles: ArticleDataProps[] = await fetchArticlesByTag(tag);
   const { tagPageTitle, tagPageCaption } = getTitleAndCaption(tag);
   return (
     <div className="container mx-auto  max-w-screen-lg my-24 sm:my-32">
@@ -42,33 +33,9 @@ const TagPage = async ({ params: { tag } }: { params: { tag: string } }) => {
       <h4 className="text-xl md:text-2xl lg:text-3xl font-sans text-center font-medium my-10 text-gray-600">
         {tagPageCaption}
       </h4>
-
-      <div className="grid grid-cols-1 gap-8">
-        {articles.map((article, index) => (
-          <Link href={`/articles/${article.slug}`} key={index}>
-            <div className="bg-white border md:rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-start">
-              <div className="md:w-1/2 relative">
-                <Image
-                  src={article.image.cloud.url}
-                  alt={article.image.alt}
-                  className="h-auto w-auto md:h-72 object-cover"
-                  width={511}
-                  height={292}
-                />
-                <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
-              </div>
-              <div className="p-6 md:w-1/2 flex flex-col justify-between">
-                <h3 className="lg:text-4xl md-lg:text-3xl md:text-2xl font-semibold text-gray-800 leading-snug mb-4">
-                  {article.title}
-                </h3>
-                <p className="text-sm md:text-base text-gray-600 text-left">
-                  {article.caption}
-                </p>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <Suspense fallback={<TagSkeleton />}>
+        <Tags tag={tag} />
+      </Suspense>
     </div>
   );
 };
