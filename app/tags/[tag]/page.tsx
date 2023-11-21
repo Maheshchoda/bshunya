@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import TagSkeleton from "./TagSkeleton";
 import Tags from "./Tags";
+import { notFound } from "next/navigation";
 
 function getTitleAndCaption(tag: string) {
   let tagPageTitle = "";
@@ -18,6 +19,8 @@ function getTitleAndCaption(tag: string) {
   } else if (tag === "recipes") {
     tagPageTitle = "Yummy Healthful Treats";
     tagPageCaption = "Where Good Taste and Good Health Unite.";
+  } else {
+    return notFound();
   }
 
   return { tagPageTitle, tagPageCaption };

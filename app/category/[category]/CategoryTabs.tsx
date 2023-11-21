@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const categories = [
+export const categoriesList = [
   { name: "Nutrition", href: "nutrition" },
   { name: "Yoga", href: "yoga" },
   { name: "Health", href: "health" },
@@ -11,7 +11,7 @@ const CategoryTabs = ({ selectedCategory }: { selectedCategory: string }) => {
   return (
     <div className="flex justify-center mx-auto max-w-2xl w-full mb-8 sm:mb-12">
       <div className="flex justify-between space-x-1 rounded-lg shadow w-full border p-2">
-        {categories.map((category) => (
+        {categoriesList.map((category) => (
           <Link
             key={category.name}
             href={`/category/${category.href}`}
