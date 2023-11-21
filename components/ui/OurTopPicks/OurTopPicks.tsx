@@ -23,7 +23,6 @@ async function getRecommendedArticles() {
 const articleClassNames = "min-w-[250px] h-[200px] m-2";
 
 const OurTopPicks = async () => {
-  const scrollContainerSelector = ".scrollable-container";
   const RecommendedArticles: ArticleDataProps[] =
     await getRecommendedArticles();
 

@@ -1,17 +1,35 @@
-import ExploreBy from "@/components/ui/ExploreBy";
-import Hero from "../components/ui/Hero";
-import TrendingStories from "@/components/ui/TrendingStories";
-import FeaturedTopics from "@/components/ui/FeaturedTopics";
-import OurTopPicks from "@/components/ui/OurTopPicks";
+import {
+  ExploreBy,
+  ExploreSkeleton,
+  FeaturedSkeleton,
+  FeaturedTopics,
+  Hero,
+  HeroSkeleton,
+  OurTopPicks,
+  OurTopPicksSkeleton,
+  TrendingSkeleton,
+  TrendingStories,
+} from "@/components/ui";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <main className="mx-auto max-w-screen-lg px-4 lg:px-0">
-      <Hero />
-      <ExploreBy />
-      <TrendingStories />
-      <FeaturedTopics />
-      <OurTopPicks />
+      <Suspense fallback={<HeroSkeleton />}>
+        <Hero />
+      </Suspense>
+      <Suspense fallback={<ExploreSkeleton />}>
+        <ExploreBy />
+      </Suspense>
+      <Suspense fallback={<TrendingSkeleton />}>
+        <TrendingStories />
+      </Suspense>
+      <Suspense fallback={<FeaturedSkeleton />}>
+        <FeaturedTopics />
+      </Suspense>
+      <Suspense fallback={<OurTopPicksSkeleton />}>
+        <OurTopPicks />
+      </Suspense>
     </main>
   );
 }
