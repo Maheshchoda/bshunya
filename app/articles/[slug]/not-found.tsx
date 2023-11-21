@@ -7,8 +7,8 @@ const NotFoundPage = () => {
         Article Not Found
       </h1>
       <p className="mt-4 text-lg md:text-xl text-gray-600">
-        The article you're looking for may have been removed or is temporarily
-        unavailable.
+        The article you&apos;re looking for may have been removed or is
+        temporarily unavailable.
       </p>
       <Link
         href="/"

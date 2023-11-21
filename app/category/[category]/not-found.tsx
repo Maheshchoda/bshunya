@@ -5,7 +5,7 @@ const CategoryNotFound = () => {
     <div className="flex flex-col items-center justify-center h-screen text-center px-4 bg-gray-50">
       <h1 className="text-4xl md:text-6xl font-bold text-gray-800">404</h1>
       <p className="mt-4 text-lg md:text-xl text-gray-600">
-        The category you're looking for doesn't exist.
+        The category you&apos;re looking for doesn&apos;t exist.
       </p>
       <Link
         href="/"
