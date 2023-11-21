@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 async function fetchArticlesByTag(tag: string) {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
   const response = await fetch(`http://localhost:3000/api/tags/${tag}`, {
     cache: "no-store",
   });
