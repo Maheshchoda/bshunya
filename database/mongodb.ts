@@ -39,16 +39,20 @@ async function closeDatabaseConnection(): Promise<void> {
   }
 }
 
-process.on("SIGINT", async () => {
+// Create a single function to handle both signals
+async function handleExitSignal(signal: NodeJS.Signals) {
+  console.log(`Received ${signal}. Closing database connection...`);
   await closeDatabaseConnection();
-  console.log("Application terminated. Database connection closed.");
+  console.log("Database connection closed. Exiting now.");
   process.exit(0);
-});
+}
 
-process.on("SIGTERM", async () => {
-  await closeDatabaseConnection();
-  console.log("Application terminated. Database connection closed.");
-  process.exit(0);
-});
+// Set the listeners only if they haven't been set before
+if (!process.listeners("SIGINT").length) {
+  process.on("SIGINT", () => handleExitSignal("SIGINT"));
+}
+if (!process.listeners("SIGTERM").length) {
+  process.on("SIGTERM", () => handleExitSignal("SIGTERM"));
+}
 
 export { connectToDatabase, closeDatabaseConnection };

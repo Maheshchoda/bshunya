@@ -1,17 +1,13 @@
 import { ArticleDataProps } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
+import { getArticlesByCategory } from "@/lib/dbOperations";
+import { notFound } from "next/navigation";
 
 async function fetchArticlesByCategory(category: string) {
-  const response = await fetch(
-    `${process.env.DOMAIN}/api/category/${category}`,
-    {
-      cache: "no-store",
-    }
-  );
-  if (!response.ok)
-    throw new Error("Failed to fetch articles by given Category");
-  return response.json();
+  const categories = await getArticlesByCategory(category);
+  if (!categories) return notFound();
+  return categories;
 }
 const Categories = async ({ category }: { category: string }) => {
   const articles: ArticleDataProps[] = await fetchArticlesByCategory(category);

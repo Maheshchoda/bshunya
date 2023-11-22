@@ -1,14 +1,13 @@
-import React from "react";
 import Image from "next/image";
 import { ArticleDataProps } from "@/types";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getArticlesByQuery } from "@/lib/dbOperations";
 
 async function getTrendingArticles() {
-  const response = await fetch(`${process.env.DOMAIN}/api/isTrending`, {
-    cache: "no-store",
-  });
-  if (!response.ok) throw new Error("Failed to fetch Trending articles");
-  return response.json();
+  const TrendingArticles = await getArticlesByQuery({ isTrending: true });
+  if (!TrendingArticles) notFound();
+  return TrendingArticles;
 }
 
 const TrendingStories = async () => {

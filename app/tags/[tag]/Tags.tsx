@@ -1,13 +1,13 @@
+import { getArticlesByTag } from "@/lib/dbOperations";
 import { ArticleDataProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 async function fetchArticlesByTag(tag: string) {
-  const response = await fetch(`${process.env.DOMAIN}/api/tags/${tag}`, {
-    cache: "no-store",
-  });
-  if (!response.ok) throw new Error("Failed to fetch articles by given tag");
-  return response.json();
+  const ArticlesByTag = await getArticlesByTag(tag);
+  if (!ArticlesByTag) notFound();
+  return ArticlesByTag;
 }
 
 const Tags = async ({ tag }: { tag: string }) => {

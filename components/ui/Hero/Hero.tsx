@@ -1,13 +1,16 @@
+import { getArticlesByQuery } from "@/lib/dbOperations";
 import { ArticleDataProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 async function getHeroArticles() {
-  const response = await fetch(`${process.env.DOMAIN}/api/isHeroArticle`, {
-    cache: "no-store",
-  });
-  if (!response.ok) throw new Error("Failed to fetch hero articles");
-  return response.json();
+  const HeroArticles = await getArticlesByQuery(
+    { isHeroArticle: true },
+    { heroPosition: 1 }
+  );
+  if (!HeroArticles) notFound();
+  return HeroArticles;
 }
 
 const Hero = async () => {

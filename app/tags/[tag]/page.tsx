@@ -29,7 +29,7 @@ function getTitleAndCaption(tag: string) {
 const TagPage = async ({ params: { tag } }: { params: { tag: string } }) => {
   const { tagPageTitle, tagPageCaption } = getTitleAndCaption(tag);
   return (
-    <div className="container mx-auto  max-w-screen-lg my-24 sm:my-32">
+    <div className="container mx-auto max-w-screen-lg my-24 sm:my-32">
       <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-center font-bold  text-gray-800">
         {tagPageTitle}
       </h2>

@@ -1,11 +1,13 @@
 import { ArticleDataProps } from "@/types/ArticleProps";
 import ArticleContent from "./ArticleRenderer";
 import { notFound } from "next/navigation";
+import { getArticleBySlug } from "@/lib/dbOperations";
 
-async function getArticle(slug: String): Promise<ArticleDataProps | null> {
-  const response = await fetch(`${process.env.DOMAIN}/api/articles/${slug}`);
-  if (!response.ok) return null;
-  return response.json();
+async function getArticle(slug: string): Promise<ArticleDataProps | null> {
+  const decodedSlug = decodeURIComponent(slug);
+  const articleData = await getArticleBySlug(decodedSlug);
+  if (!articleData) notFound();
+  return articleData;
 }
 
 export default async function ArticlePage({

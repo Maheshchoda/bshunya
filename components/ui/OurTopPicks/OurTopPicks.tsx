@@ -1,8 +1,9 @@
-import React from "react";
 import Image from "next/image";
 import { ArticleDataProps } from "@/types";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
+import { getArticlesByQuery } from "@/lib/dbOperations";
 
 // Dynamically import the ScrollButtons with SSR turned off
 const ScrollButtons = dynamic(() => import("./ScrollButtons"), {
@@ -10,11 +11,9 @@ const ScrollButtons = dynamic(() => import("./ScrollButtons"), {
 });
 
 async function getRecommendedArticles() {
-  const response = await fetch(`${process.env.DOMAIN}/api/isRecommended`, {
-    cache: "no-store",
-  });
-  if (!response.ok) throw new Error("Failed to fetch Recommended Articles");
-  return response.json();
+  const RecommendedArticles = await getArticlesByQuery({ isRecommended: true });
+  if (!RecommendedArticles) notFound();
+  return RecommendedArticles;
 }
 
 const articleClassNames = "min-w-[250px] h-[200px] m-2";
