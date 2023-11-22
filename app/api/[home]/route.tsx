@@ -3,10 +3,12 @@ import { createApiResponse } from "@/lib/apiResponses";
 import { getArticlesByQuery } from "@/lib/dbOperations";
 import { Sort } from "mongodb";
 
-export async function GET(request: NextRequest) {
+export async function GET(
+  request: Request,
+  { params }: { params: { home: string } }
+) {
   try {
-    const searchParams = request.nextUrl.searchParams;
-    const queryKey = searchParams.get("query");
+    const queryKey = params.home;
 
     // Define the query and sorting options
     let query: { [key: string]: boolean } = {};

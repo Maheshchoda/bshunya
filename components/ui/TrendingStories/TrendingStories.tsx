@@ -4,12 +4,9 @@ import { ArticleDataProps } from "@/types";
 import Link from "next/link";
 
 async function getTrendingArticles() {
-  const response = await fetch(
-    `http://localhost:3000/api/articles?query=isTrending`,
-    {
-      cache: "no-store",
-    }
-  );
+  const response = await fetch(`${process.env.DOMAIN}/api/isTrending`, {
+    cache: "no-store",
+  });
   if (!response.ok) throw new Error("Failed to fetch Trending articles");
   return response.json();
 }

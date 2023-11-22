@@ -10,12 +10,9 @@ const ScrollButtons = dynamic(() => import("./ScrollButtons"), {
 });
 
 async function getRecommendedArticles() {
-  const response = await fetch(
-    `http://localhost:3000/api/articles?query=isRecommended`,
-    {
-      cache: "no-store",
-    }
-  );
+  const response = await fetch(`${process.env.DOMAIN}/api/isRecommended`, {
+    cache: "no-store",
+  });
   if (!response.ok) throw new Error("Failed to fetch Recommended Articles");
   return response.json();
 }

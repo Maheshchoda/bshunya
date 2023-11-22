@@ -3,7 +3,7 @@ import ArticleContent from "./ArticleRenderer";
 import { notFound } from "next/navigation";
 
 async function getArticle(slug: String): Promise<ArticleDataProps | null> {
-  const response = await fetch(`http://localhost:3000/api/articles/${slug}`);
+  const response = await fetch(`${process.env.DOMAIN}/api/articles/${slug}`);
   if (!response.ok) return null;
   return response.json();
 }

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 async function fetchArticlesByTag(tag: string) {
-  const response = await fetch(`http://localhost:3000/api/tags/${tag}`, {
+  const response = await fetch(`${process.env.DOMAIN}/api/tags/${tag}`, {
     cache: "no-store",
   });
   if (!response.ok) throw new Error("Failed to fetch articles by given tag");

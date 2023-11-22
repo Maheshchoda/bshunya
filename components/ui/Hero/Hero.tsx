@@ -3,12 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 async function getHeroArticles() {
-  const response = await fetch(
-    `http://localhost:3000/api/articles?query=isHeroArticle`,
-    {
-      cache: "no-store",
-    }
-  );
+  const response = await fetch(`${process.env.DOMAIN}/api/isHeroArticle`, {
+    cache: "no-store",
+  });
   if (!response.ok) throw new Error("Failed to fetch hero articles");
   return response.json();
 }

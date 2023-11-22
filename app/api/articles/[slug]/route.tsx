@@ -1,8 +1,11 @@
 import { getArticleBySlug } from "@/lib/dbOperations";
 import { createApiResponse } from "@/lib/apiResponses";
 
-export async function GET(request: Request, context: any) {
-  const slug = context.params?.slug;
+export async function GET(
+  request: Request,
+  { params }: { params: { slug: string } }
+) {
+  const slug = params.slug;
 
   if (!slug) {
     return createApiResponse({ message: "Slug is required" }, 400);

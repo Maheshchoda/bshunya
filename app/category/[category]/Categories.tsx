@@ -4,7 +4,7 @@ import Image from "next/image";
 
 async function fetchArticlesByCategory(category: string) {
   const response = await fetch(
-    `http://localhost:3000/api/category/${category}`,
+    `${process.env.DOMAIN}/api/category/${category}`,
     {
       cache: "no-store",
     }
