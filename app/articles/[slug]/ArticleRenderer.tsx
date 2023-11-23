@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/ArticleComponents";
 import Image from "next/image";
 import { ArticleProps, ContentElementProps } from "@/types";
+import ImageSkeleton from "./ArticleImageSkeleton";
 
 const ContentRenderer = ({ element }: { element: ContentElementProps }) => {
   switch (element.type) {
@@ -36,13 +37,14 @@ const ArticleContent = ({ Article }: ArticleProps) => {
       <h1 className="text-2xl font-bold leading-tight text-gray-900 md:mt-8 lg:text-4xl lg:leading-none px-2 md:px-4">
         {title}
       </h1>
-      <div className="relative my-4 md:px-4 md:h-96 lg:h-[420px]">
+      <div className="relative my-4 md:px-4">
         <Image
           src={cloud.url}
           alt={alt}
-          width={750}
-          height={420}
-          className="object-fit w-auto h-auto"
+          width={896}
+          height={512}
+          sizes="100vw"
+          className="object-fit"
           priority
         />
       </div>
