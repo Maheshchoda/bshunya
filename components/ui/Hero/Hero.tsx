@@ -25,7 +25,6 @@ const fetchBase64Images = async (articles: ArticleDataProps[]) => {
     })
   );
 };
-
 const Hero = async () => {
   const heroArticles: ArticleDataProps[] = await getHeroArticles();
   const articlesWithDataUrl = await fetchBase64Images(heroArticles);
@@ -33,96 +32,66 @@ const Hero = async () => {
   const secondaryArticles = articlesWithDataUrl.slice(1);
 
   return (
-    <div className="container mx-auto md:px-1 relative">
-      {/* Mobile Layout */}
-      <div className="md:hidden flex flex-col space-y-4 mt-16 sm:mt-24 mb-16">
-        {heroArticles.map((article) => (
-          <Link
-            key={article._id}
-            href={`/articles/${article.slug}`}
-            className="flex flex-col items-center py-4 px-2 border-b border-gray-200"
-          >
-            <div className="overflow-hidden">
-              <Image
-                src={article.image.cloud.url}
-                alt={article.image.alt}
-                width={380}
-                height={150}
-                className="w-auto h-auto object-contain"
-                priority
-              />
-            </div>
-            <h2 className="max-w-md sm:w-auto text-2xl font-bold my-2 text-left">
-              {article.title}
-            </h2>
-            <p className="max-w-md sm:w-auto text-sm font-normal text-gray-700 text-left">
-              {article.caption}
-            </p>
-          </Link>
-        ))}
-      </div>
-      {/* Tablet and Laptop Layout */}
-      <div className="hidden md:block max-w-6xl mx-auto mt-32 lg:mb-32 md:mb-16 justify-center">
-        <div className="flex flex-row items-stretch gap-x-12">
-          {mainArticle && (
-            <Link href={`/articles/${mainArticle.slug}`} className="w-1/2">
-              <div className="relative overflow-hidden">
+    <div className="container mx-auto px-1 relative">
+      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 mt-16 sm:mt-24 mb-16 md:mt-32 lg:mb-32 md:mb-16 justify-center">
+        {/* Main Article for all viewports */}
+        <Link
+          href={`/articles/${mainArticle.slug}`}
+          className="flex flex-col md:w-1/2 items-center py-4 px-2 md:py-0 border-b md:border-b-0 border-gray-200"
+        >
+          <div className="relative overflow-hidden ">
+            <Image
+              src={mainArticle.image.cloud.url}
+              alt={mainArticle.image.alt}
+              width={520}
+              height={390}
+              sizes="(min-width: 1024px) 508px, (min-width: 768px) 380px, 100vw"
+              placeholder="blur"
+              blurDataURL={mainArticle.blurDataUrl}
+              priority
+              className="object-cover lg:h-96 md:h-64"
+            />
+            <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
+          </div>
+          <h2 className="sm:w-auto text-2xl md:text-4xl font-bold my-2 md:my-4 md:text-left hover:text-blue-600">
+            {mainArticle.title}
+          </h2>
+          <p className="sm:w-auto text-sm md:text-base font-normal text-gray-700 md:text-left">
+            {mainArticle.caption}
+          </p>
+        </Link>
+        {/* Secondary Articles for all viewports */}
+        <div className="flex flex-col md:flex-1 space-y-4 md:space-y-10">
+          {secondaryArticles.map((article) => (
+            <Link
+              href={`/articles/${article.slug}`}
+              key={article._id}
+              className="flex flex-col items-center py-4 px-2 border-b md:flex-row md:items-start md:py-0 md:border-0 border-gray-200 "
+            >
+              <div className="relative overflow-hidden md:w-1/3">
                 <Image
-                  src={mainArticle.image.cloud.url}
-                  alt={mainArticle.image.alt}
-                  width={520}
-                  height={390}
-                  sizes="(min-width: 1024px) 508px, (min-width: 768px) 380px, 100vw"
+                  src={article.image.cloud.url}
+                  alt={article.image.alt}
+                  width={448}
+                  height={256}
+                  sizes="(min-width: 1024px) 153px, (min-width: 768px) 380px, 100vw"
                   placeholder="blur"
-                  blurDataURL={mainArticle.blurDataUrl}
+                  blurDataURL={article.blurDataUrl}
                   priority
-                  className="rounded object-cover w-auto h-auto lg:h-96 md:h-64"
+                  className="object-cover lg:h-40 md:h-32"
                 />
                 <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>
-              <h1 className="text-4xl font-bold my-4 hover:text-blue-600">
-                {mainArticle.title}
-              </h1>
-              <p className="text-base font-normal text-gray-700 text-left">
-                {mainArticle.caption}
-              </p>
+              <div className="flex flex-col justify-center md:justify-start md:w-80 md:px-3">
+                <h2 className="text-2xl md:text-xl font-bold my-2 md:my-0 hover:text-blue-600">
+                  {article.title}
+                </h2>
+                <p className="text-sm md:text-base font-normal  md:my-2 text-gray-700">
+                  {article.caption}
+                </p>
+              </div>
             </Link>
-          )}
-          {/* Right Part - Secondary Hero Articles */}
-          <div className="flex flex-col flex-1 space-y-10">
-            {secondaryArticles.map((article) => (
-              <Link
-                className="flex group items-start" // Center items vertically
-                href={`/articles/${article.slug}`}
-                key={article._id}
-              >
-                {/* Secondary Article Image */}
-                <div className="relative w-1/3 overflow-hidden">
-                  <Image
-                    src={article.image.cloud.url}
-                    alt={article.image.alt}
-                    width={185}
-                    height={138}
-                    sizes="(min-width: 1024px) 153px, (min-width: 768px) 110px, 100vw"
-                    placeholder="blur"
-                    blurDataURL={article.blurDataUrl}
-                    priority
-                    className="rounded object-cover lg:h-40 md:h-32"
-                  />
-                  <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
-                </div>
-                {/* Secondary Article Text */}
-                <div className="w-2/3 flex flex-col justify-center pl-3">
-                  <h1 className="md:text-lg lg:text-xl font-bold mb-2 group-hover:text-blue-600">
-                    {article.title}
-                  </h1>
-                  <p className="text-sm md:text-base lg:text-md font-normal text-gray-700">
-                    {article.caption}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
     </div>
