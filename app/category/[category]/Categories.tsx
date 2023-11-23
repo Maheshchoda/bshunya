@@ -12,25 +12,26 @@ async function fetchArticlesByCategory(category: string) {
 const Categories = async ({ category }: { category: string }) => {
   const articles: ArticleDataProps[] = await fetchArticlesByCategory(category);
   return (
-    <div className="grid grid-cols-1 gap-8">
+    <div className="grid grid-cols-1 gap-8 px-4 sm:px-6 lg:px-8">
       {articles.map((article, index) => (
         <Link href={`/articles/${article.slug}`} key={index}>
-          <div className="bg-white border md:rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row items-start">
-            <div className="md:w-1/2 relative">
+          <div className="bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col sm:max-w-xl md:max-w-full md:flex-row items-center mx-auto">
+            <div className="w-full md:w-1/2 relative">
               <Image
                 src={article.image.cloud.url}
                 alt={article.image.alt}
-                className="h-auto w-auto md:h-72 object-cover"
-                width={511}
-                height={292}
+                width={380}
+                height={217}
+                sizes="380px"
+                className="w-full object-cover"
               />
               <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
             </div>
-            <div className="p-6 md:w-1/2 flex flex-col justify-between">
-              <h3 className="lg:text-4xl md-lg:text-3xl md:text-2xl font-semibold text-gray-800 leading-snug mb-4">
+            <div className="p-3 md:p-6 flex flex-col justify-between w-full md:w-1/2">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 leading-snug mb-4 hover:text-blue-600">
                 {article.title}
-              </h3>
-              <p className="text-sm md:text-base text-gray-600 text-left">
+              </h1>
+              <p className="text-sm sm:text-base text-gray-600 text-left">
                 {article.caption}
               </p>
             </div>
