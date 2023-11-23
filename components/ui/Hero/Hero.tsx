@@ -1,4 +1,5 @@
 import { getArticlesByQuery } from "@/lib/dbOperations";
+import getBase64 from "@/lib/plaiceHolder";
 import { ArticleDataProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,10 +14,23 @@ async function getHeroArticles() {
   return HeroArticles;
 }
 
+const fetchBase64Images = async (articles: ArticleDataProps[]) => {
+  return await Promise.all(
+    articles.map(async (article) => {
+      const myBlurDataUrl = await getBase64(article.image.cloud.url);
+      return {
+        ...article,
+        blurDataUrl: myBlurDataUrl,
+      };
+    })
+  );
+};
+
 const Hero = async () => {
   const heroArticles: ArticleDataProps[] = await getHeroArticles();
-  const mainArticle = heroArticles[0];
-  const secondaryArticles = heroArticles.slice(1);
+  const articlesWithDataUrl = await fetchBase64Images(heroArticles);
+  const mainArticle = articlesWithDataUrl[0];
+  const secondaryArticles = articlesWithDataUrl.slice(1);
 
   return (
     <div className="container mx-auto md:px-1 relative">
@@ -58,14 +72,17 @@ const Hero = async () => {
                   alt={mainArticle.image.alt}
                   width={520}
                   height={390}
+                  sizes="(min-width: 1024px) 508px, (min-width: 768px) 380px, 100vw"
+                  placeholder="blur"
+                  blurDataURL={mainArticle.blurDataUrl}
                   priority
                   className="rounded object-cover w-auto h-auto lg:h-96 md:h-64"
                 />
                 <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>
-              <h2 className="text-4xl font-bold my-4 hover:text-blue-600">
+              <h1 className="text-4xl font-bold my-4 hover:text-blue-600">
                 {mainArticle.title}
-              </h2>
+              </h1>
               <p className="text-base font-normal text-gray-700 text-left">
                 {mainArticle.caption}
               </p>
@@ -86,15 +103,19 @@ const Hero = async () => {
                     alt={article.image.alt}
                     width={185}
                     height={138}
+                    sizes="(min-width: 1024px) 153px, (min-width: 768px) 110px, 100vw"
+                    placeholder="blur"
+                    blurDataURL={article.blurDataUrl}
+                    priority
                     className="rounded object-cover lg:h-40 md:h-32"
                   />
                   <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
                 </div>
                 {/* Secondary Article Text */}
                 <div className="w-2/3 flex flex-col justify-center pl-3">
-                  <h2 className="md:text-lg lg:text-xl font-bold mb-2 group-hover:text-blue-600">
+                  <h1 className="md:text-lg lg:text-xl font-bold mb-2 group-hover:text-blue-600">
                     {article.title}
-                  </h2>
+                  </h1>
                   <p className="text-sm md:text-base lg:text-md font-normal text-gray-700">
                     {article.caption}
                   </p>
