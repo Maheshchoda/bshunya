@@ -30,12 +30,12 @@ const TagPage = async ({ params: { tag } }: { params: { tag: string } }) => {
   const { tagPageTitle, tagPageCaption } = getTitleAndCaption(tag);
   return (
     <div className="container mx-auto max-w-screen-lg my-24 sm:my-32">
-      <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-center font-bold  text-gray-800">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-center font-bold  text-gray-800">
         {tagPageTitle}
-      </h2>
-      <h4 className="text-xl md:text-2xl lg:text-3xl font-sans text-center font-medium my-10 text-gray-600">
+      </h1>
+      <h2 className="text-xl md:text-2xl lg:text-3xl font-sans text-center font-medium my-10 text-gray-600">
         {tagPageCaption}
-      </h4>
+      </h2>
       <Suspense fallback={<TagSkeleton />}>
         <Tags tag={tag} />
       </Suspense>

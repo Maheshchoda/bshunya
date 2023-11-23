@@ -44,9 +44,9 @@ const OurTopPicks = async () => {
                   <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
                 </div>
                 <div className="h-16 flex items-center justify-center bg-white rounded-b-lg pt-2">
-                  <h3 className="text-left text-sm font-semibold text-gray-800 hover:text-blue-600 p-2">
+                  <h2 className="text-left text-sm font-semibold text-gray-800 hover:text-blue-600 p-2">
                     {article.title}
-                  </h3>
+                  </h2>
                 </div>
               </div>
             </Link>

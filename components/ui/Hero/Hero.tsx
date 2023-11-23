@@ -53,9 +53,9 @@ const Hero = async () => {
             />
             <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
           </div>
-          <h2 className="sm:w-auto text-2xl md:text-4xl font-bold my-2 md:my-4 md:text-left hover:text-blue-600">
+          <h1 className="sm:w-auto text-2xl md:text-4xl font-bold my-2 md:my-4 md:text-left hover:text-blue-600">
             {mainArticle.title}
-          </h2>
+          </h1>
           <p className="sm:w-auto text-sm md:text-base font-normal text-gray-700 md:text-left">
             {mainArticle.caption}
           </p>
@@ -83,9 +83,9 @@ const Hero = async () => {
                 <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
               </div>
               <div className="flex flex-col justify-center md:justify-start md:w-80 md:px-3">
-                <h2 className="text-2xl md:text-xl font-bold my-2 md:my-0 hover:text-blue-600">
+                <h1 className="text-2xl md:text-xl font-bold my-2 md:my-0 hover:text-blue-600">
                   {article.title}
-                </h2>
+                </h1>
                 <p className="text-sm md:text-base font-normal  md:my-2 text-gray-700">
                   {article.caption}
                 </p>

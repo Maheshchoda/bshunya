@@ -15,7 +15,7 @@ const TrendingStories = async () => {
   return (
     <div>
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2">Trending</h2>
+        <h1 className="text-2xl font-semibold text-gray-800 mb-2">Trending</h1>
         <hr className="border-t border-gray-300 w-full" />
       </div>
 
@@ -38,9 +38,9 @@ const TrendingStories = async () => {
                   </div>
                 </div>
                 <div className="w-full mx-1 max-w-md md:w-1/2 md:ml-2 p-1">
-                  <h3 className="md:text-xl md-lg:text-sm font-semibold mb-2 text-gray-800 hover:text-blue-600">
+                  <h2 className="md:text-xl md-lg:text-sm font-semibold mb-2 text-gray-800 hover:text-blue-600">
                     {article.title}
-                  </h3>
+                  </h2>
                   <p className="sm:text-xs text-gray-600">{article.caption}</p>
                 </div>
               </div>
