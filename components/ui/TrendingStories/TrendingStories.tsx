@@ -31,7 +31,8 @@ const TrendingStories = async () => {
                       alt={article.image.alt}
                       width={450}
                       height={300}
-                      className="md:h-36 lg:h-44 object-cover"
+                      sizes="(min-width: 1024px) 240px, (min-width: 768px) 168px, (min-width:425px) 380px, 100vw"
+                      className="lg:h-44 md:h-36 object-cover"
                     />
                     <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
                   </div>
