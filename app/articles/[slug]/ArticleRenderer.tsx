@@ -50,6 +50,7 @@ const ArticleContent = async ({ Article }: ArticleProps) => {
           className="object-fit"
           priority
         />
+        <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
       </div>
       <h2 className="text-xl font-bold leading-tight text-gray-900 my-4 md:mt-8 lg:text-2xl lg:leading-none px-4">
         {Article.caption}
