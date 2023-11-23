@@ -36,9 +36,10 @@ const OurTopPicks = async () => {
                   <Image
                     src={article.image.cloud.url}
                     alt={article.image.alt}
-                    width={250}
-                    height={160}
-                    className="h-40 object-cover"
+                    width={260}
+                    height={149}
+                    sizes="(min-width: 425px) 260px, 100vw"
+                    className="object-cover"
                   />
                   <div className="absolute top-0 left-0 w-full h-full hover:bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition ease-in-out"></div>
                 </div>
