@@ -11,6 +11,22 @@ async function getCollection() {
   return db.collection<ArticleDataProps>(config.collection);
 }
 
+export async function getAllArticleSlugs(): Promise<string[]> {
+  try {
+    const articlesCollection = await getCollection();
+    // Use projection to return only the 'slug' field from each document
+    const slugs = await articlesCollection
+      .find({}, { projection: { _id: 0, slug: 1 } })
+      .toArray();
+    return slugs.map((doc) => doc.slug);
+  } catch (error) {
+    console.error("Error retrieving all article slugs:", error);
+    throw new Error(
+      "Unable to retrieve article slugs. Please try again later."
+    );
+  }
+}
+
 export async function getArticleBySlug(
   slug: string
 ): Promise<ArticleDataProps | null> {
