@@ -3,6 +3,32 @@ import TagSkeleton from "./TagSkeleton";
 import Tags from "./Tags";
 import { notFound } from "next/navigation";
 
+interface Props {
+  params: { tag: string };
+}
+
+export async function generateMetadata({ params: { tag } }: Props) {
+  const title = "Wellness Guides: Haircare to Healthy Eating";
+  const description =
+    "Navigate through our wellness guides for expert tips on haircare, skincare, nutritious recipes, and healthy eating habits. Start your journey to holistic health with Bshunya.";
+  return {
+    title: title,
+    description: description,
+    category: "Hair Care, Skin Care, Eat Right, Healthy Nutritious Recipes",
+    alternates: {
+      canonical: `/tags/${tag}`,
+    },
+    openGraph: {
+      title: title,
+      description: description,
+      locale: "en_US",
+      url: `/tags/${tag}`,
+      type: "website",
+      siteName: process.env.DOMAIN,
+    },
+  };
+}
+
 function getTitleAndCaption(tag: string) {
   let tagPageTitle = "";
   let tagPageCaption = "";
@@ -26,7 +52,7 @@ function getTitleAndCaption(tag: string) {
   return { tagPageTitle, tagPageCaption };
 }
 
-const TagPage = async ({ params: { tag } }: { params: { tag: string } }) => {
+const TagPage = async ({ params: { tag } }: Props) => {
   const { tagPageTitle, tagPageCaption } = getTitleAndCaption(tag);
   return (
     <div className="container mx-auto max-w-screen-lg my-24 sm:my-32">

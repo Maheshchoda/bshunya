@@ -5,11 +5,33 @@ import Categories from "./Categories";
 import { categoriesList } from "./CategoryTabs";
 import { notFound } from "next/navigation";
 
-const CategoryPage = async ({
-  params: { category },
-}: {
+interface Props {
   params: { category: string };
-}) => {
+}
+
+export async function generateMetadata({ params: { category } }: Props) {
+  const title = "Explore Health & Wellness Categories";
+  const description =
+    "Delve into our curated categories spanning health, nutrition, yoga, and fitness. Bshunya is your sanctuary for timeless health practices and modern wellness wisdom.";
+  return {
+    title: title,
+    description: description,
+    category: "Health, Yoga, Nutrition, Fitness",
+    alternates: {
+      canonical: `/category/${category}`,
+    },
+    openGraph: {
+      title: title,
+      description: description,
+      locale: "en_US",
+      url: `/category/${category}`,
+      type: "website",
+      siteName: process.env.DOMAIN,
+    },
+  };
+}
+
+const CategoryPage = async ({ params: { category } }: Props) => {
   const categoryExists = categoriesList.some((item) => item.href === category);
   if (!categoryExists) notFound();
   return (
