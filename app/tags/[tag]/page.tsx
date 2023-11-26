@@ -7,6 +7,11 @@ interface Props {
   params: { tag: string };
 }
 
+export const generateStaticParams = async () => {
+  const TagList = ["haircare", "skincare", "eatright", "recipes"];
+  return TagList;
+};
+
 export async function generateMetadata({ params: { tag } }: Props) {
   const title = "Wellness Guides: Haircare to Healthy Eating";
   const description =

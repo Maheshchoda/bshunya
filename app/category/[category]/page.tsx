@@ -9,6 +9,11 @@ interface Props {
   params: { category: string };
 }
 
+export const generateStaticParams = async () => {
+  const categories = categoriesList.map((category) => category.href);
+  return categories;
+};
+
 export async function generateMetadata({ params: { category } }: Props) {
   const title = "Explore Health & Wellness Categories";
   const description =
