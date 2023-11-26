@@ -1,35 +1,13 @@
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import { ArticleDataProps } from "@/types/ArticleProps";
-import { getArticleBySlug } from "@/lib/dbOperations";
+import { getAllArticleSlugs, getArticleBySlug } from "@/lib/dbOperations";
 import ArticleContent from "./ArticleRenderer";
 
 interface Props {
   params: {
     slug: string;
   };
-}
-
-const fetchArticle = cache((slug: string) => {
-  const decodedSlug = decodeURIComponent(slug);
-  return getArticleBySlug(decodedSlug);
-});
-
-async function getArticle(slug: string): Promise<ArticleDataProps | null> {
-  const articleData = await fetchArticle(slug);
-  if (!articleData) notFound();
-  return articleData;
-}
-
-export default async function ArticlePage({ params: { slug } }: Props) {
-  const article = await getArticle(slug);
-  if (!article) notFound();
-
-  return (
-    <div className="mx-auto max-w-screen-lg mt-24">
-      <ArticleContent Article={article} />
-    </div>
-  );
 }
 
 export async function generateMetadata({ params: { slug } }: Props) {
@@ -59,4 +37,31 @@ export async function generateMetadata({ params: { slug } }: Props) {
       type: "article",
     },
   };
+}
+
+export async function generateStaticParams() {
+  const slugs = await getAllArticleSlugs();
+  if (!slugs) return [];
+  return slugs.map((slug) => slug);
+}
+const fetchArticle = cache((slug: string) => {
+  const decodedSlug = decodeURIComponent(slug);
+  return getArticleBySlug(decodedSlug);
+});
+
+async function getArticle(slug: string): Promise<ArticleDataProps | null> {
+  const articleData = await fetchArticle(slug);
+  if (!articleData) notFound();
+  return articleData;
+}
+
+export default async function ArticlePage({ params: { slug } }: Props) {
+  const article = await getArticle(slug);
+  if (!article) notFound();
+
+  return (
+    <div className="mx-auto max-w-screen-lg mt-24">
+      <ArticleContent Article={article} />
+    </div>
+  );
 }
