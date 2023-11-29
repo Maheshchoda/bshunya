@@ -1,9 +1,14 @@
 import { ListProps, ListItemProps } from "@/types";
 import renderText from "./RenderText";
+import LinkComponent from "./Link";
 
 const ListItemComponent = ({ element }: { element: ListItemProps }) => (
   <li className="mb-3 text-gray-700 text-base leading-relaxed">
-    {element.children.map((child) => renderText(child))}
+    {element.children.map((child, index) => {
+      if (child.type === "text") return renderText(child);
+      if (child.type === "link")
+        return <LinkComponent key={index} element={child} />;
+    })}
   </li>
 );
 

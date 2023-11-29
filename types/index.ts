@@ -8,5 +8,6 @@ export type {
   ListProps,
   ListItemProps,
   QuoteProps,
+  LinkProps,
 } from "./ContentProps";
 export type { ArticleProps, ArticleDataProps } from "./ArticleProps";

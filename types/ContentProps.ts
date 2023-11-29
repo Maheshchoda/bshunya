@@ -1,5 +1,18 @@
 import { ImageProps } from "./ArticleProps";
 
+type ChildElement = TextProps | LinkProps;
+
+export interface LinkProps {
+  type: "link";
+  text: string;
+  children: TextProps[];
+  fields: {
+    url: string;
+    newTab: boolean;
+    linkType: string;
+  };
+}
+
 export interface TextProps {
   type: "text";
   format?: number;
@@ -9,17 +22,17 @@ export interface TextProps {
 export interface HeadingProps {
   type: "heading";
   tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  children: TextProps[];
+  children: ChildElement[];
 }
 
 export interface ParagraphProps {
   type: "paragraph";
-  children: TextProps[];
+  children: ChildElement[];
 }
 
 export interface ListItemProps {
   type: "listitem";
-  children: TextProps[];
+  children: ChildElement[];
 }
 
 export interface ListProps {
@@ -30,7 +43,7 @@ export interface ListProps {
 
 export interface QuoteProps {
   type: "quote";
-  children: TextProps[];
+  children: ChildElement[];
 }
 
 export interface UploadProps {
@@ -44,7 +57,8 @@ export type ContentElementProps =
   | ParagraphProps
   | ListProps
   | QuoteProps
-  | UploadProps;
+  | UploadProps
+  | LinkProps;
 
 export interface ContentProps {
   root: {

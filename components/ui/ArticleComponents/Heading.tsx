@@ -1,5 +1,6 @@
 import { HeadingProps } from "@/types";
 import renderText from "./RenderText";
+import LinkComponent from "./Link";
 
 const Heading = ({ element }: { element: HeadingProps }) => {
   const Tag = element.tag as keyof JSX.IntrinsicElements;
@@ -16,7 +17,15 @@ const Heading = ({ element }: { element: HeadingProps }) => {
 
   const headingStyle = baseStyle + (sizeStyles[Tag] ?? "");
 
-  return <Tag className={headingStyle}>{element.children.map(renderText)}</Tag>;
+  return (
+    <Tag className={headingStyle}>
+      {element.children.map((child, index) => {
+        if (child.type === "text") return renderText(child);
+        if (child.type === "link")
+          return <LinkComponent key={index} element={child} />;
+      })}
+    </Tag>
+  );
 };
 
 export default Heading;

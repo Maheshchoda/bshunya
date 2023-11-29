@@ -1,15 +1,18 @@
 import Link from "next/link";
 import StyledText from "./StyledText";
+import { LinkProps } from "@/types";
 
-type LinkProps = {
-  text: string;
-  url: string;
-  newTab?: boolean;
-};
+export const LinkComponent = ({ element }: { element: LinkProps }) => {
+  const { text, fields } = element;
 
-export const LinkComponent = ({ text, url, newTab }: LinkProps) => {
   return (
-    <Link href={url} target={newTab ? "_blank" : "_self"}>
+    <Link
+      href={fields.url}
+      passHref
+      className="custom-link"
+      target={fields.newTab ? "_blank" : "_self"}
+      rel={fields.newTab ? "noopener noreferrer" : undefined}
+    >
       <StyledText text={text} />
     </Link>
   );
