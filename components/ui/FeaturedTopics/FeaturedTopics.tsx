@@ -6,33 +6,33 @@ const FeaturedTopics = () => {
     {
       id: 1,
       title: "Ditch Late Dinners: The Surprising Secret to Better Health!",
-      slug: "/articles/midnight-feasts-vs.-sunrise-eats:-the-best-time-to-have-your-big-meal",
+      slug: "/articles/drawbacks-late-night-dining",
     },
     {
       id: 2,
       title: "Discover Time-Honored Oil Extraction Techniques Today!",
-      slug: "/articles/reviving-tradition:-the-power-of-pure-oils-in-health-and-community",
+      slug: "/articles/traditional-oils-brain-health-connection",
     },
     {
       id: 3,
       title: "Exposed: The Real Scoop on Iodized Salt!",
-      slug: "/articles/exposed:-the-real-scoop-on-iodized-salt!",
+      slug: "/articles/health-risks-commercial-flowing-salts",
     },
     {
       id: 4,
       title: "Organic Morning Feast: Vitality Through Nature",
-      slug: "/articles/nature's-bounty-breakfast:-energise-your-day-the-organic-way",
+      slug: "/articles/hydration-high-water-foods",
     },
     {
       id: 5,
       title: "Reviving Gut Health with Ancient Wisdom",
-      slug: "/articles/cultivating-gut-health:-beyond-probiotics-to-traditional-indian-wisdom",
+      slug: "/articles/microbial-diversity-traditional-indian-diet",
     },
 
     {
       id: 6,
       title: "Unlock Health Secrets: Millets Revolutionize Wellness!",
-      slug: "/articles/balancing-our-health:-microbial,-glucose,-and-hormone-harmony-through-diet",
+      slug: "/articles/protein-rich-italian-millet-benefits",
     },
   ];
 
