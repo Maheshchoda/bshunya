@@ -17,7 +17,7 @@ async function getHeroArticles() {
 const fetchBase64Images = async (articles: ArticleDataProps[]) => {
   return await Promise.all(
     articles.map(async (article) => {
-      const myBlurDataUrl = await getBase64(article.image.cloud.url);
+      const myBlurDataUrl = await getBase64(article.image.id);
       return {
         ...article,
         blurDataUrl: myBlurDataUrl,
@@ -40,8 +40,10 @@ const Hero = async () => {
           className="flex flex-col md:w-1/2 items-center py-4 px-2 md:py-0 border-b md:border-b-0 border-gray-200"
         >
           <div className="relative overflow-hidden ">
+            
             <Image
-              src={mainArticle.image.cloud.url}
+            src={`/BshunyaImages/${mainArticle.image.id}.webp`}
+              // src={mainArticle.image.cloud.url}
               alt={mainArticle.image.alt}
               width={520}
               height={390}
@@ -70,7 +72,7 @@ const Hero = async () => {
             >
               <div className="relative overflow-hidden md:w-1/3">
                 <Image
-                  src={article.image.cloud.url}
+                 src={`/BshunyaImages/${article.image.id}.webp`}
                   alt={article.image.alt}
                   width={448}
                   height={256}

@@ -18,7 +18,7 @@ const Categories = async ({ category }: { category: string }) => {
           <div className="bg-white border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col sm:max-w-xl md:max-w-full md:flex-row items-center mx-auto">
             <div className="w-full md:w-1/2 relative">
               <Image
-                src={article.image.cloud.url}
+              src={`/BshunyaImages/${article.image.id}.webp`}
                 alt={article.image.alt}
                 width={380}
                 height={217}

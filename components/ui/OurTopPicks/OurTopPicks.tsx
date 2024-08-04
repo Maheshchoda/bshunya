@@ -34,7 +34,7 @@ const OurTopPicks = async () => {
               <div className={`${articleClassNames} flex-shrink-0`}>
                 <div className="relative rounded-t-lg overflow-hidden">
                   <Image
-                    src={article.image.cloud.url}
+                  src={`/BshunyaImages/${article.image.id}.webp`}
                     alt={article.image.alt}
                     width={260}
                     height={149}

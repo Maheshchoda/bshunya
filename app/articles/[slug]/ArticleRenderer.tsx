@@ -29,9 +29,9 @@ const ContentRenderer = ({ element }: { element: ContentElementProps }) => {
 
 const ArticleContent = async ({ Article }: ArticleProps) => {
   const { title, image } = Article;
-  const { cloud, alt } = image;
+  const { id, alt } = image;
   const children = Article.content.root.children;
-  const myBlurDataUrl = await getBase64(cloud.url);
+  const myBlurDataUrl = await getBase64(image.id);
 
   return (
     <main className="flex flex-col justify-center max-w-screen-md">
@@ -40,7 +40,7 @@ const ArticleContent = async ({ Article }: ArticleProps) => {
       </h1>
       <div className="relative my-4 md:px-4">
         <Image
-          src={cloud.url}
+          src={`/BshunyaImages/${id}.webp`}
           alt={alt}
           width={896}
           height={512}
@@ -63,5 +63,4 @@ const ArticleContent = async ({ Article }: ArticleProps) => {
     </main>
   );
 };
-
 export default ArticleContent;

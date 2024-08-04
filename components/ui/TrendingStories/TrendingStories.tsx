@@ -27,7 +27,8 @@ const TrendingStories = async () => {
                 <div className="w-full md:w-1/2">
                   <div className="relative">
                     <Image
-                      src={article.image.cloud.url}
+                    src={`/BshunyaImages/${article.image.id}.webp`}
+                      // src={article.image.cloud.url}
                       alt={article.image.alt}
                       width={450}
                       height={300}
