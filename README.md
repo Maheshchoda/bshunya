@@ -1,3 +1,3 @@
 # Bshunya
 
-A Health Companion App. Under Development
+A Health Companion App.
