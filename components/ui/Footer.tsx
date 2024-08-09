@@ -26,7 +26,7 @@ export default function Footer() {
         </nav>
 
         <div className="col-span-1 lg:col-span-4 text-xs mt-2 lg:mt-4">
-          <p>© 2023 Bshunya. All rights reserved.</p>
+          <p>© 2024 Bshunya. All rights reserved.</p>
           <p>
             The services, content, and products on our website are for
             informational purposes only. Bshunya does not provide medical
